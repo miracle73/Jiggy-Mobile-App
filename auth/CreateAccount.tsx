@@ -74,6 +74,7 @@ const CreateAccount = () => {
         setCPassword('');
         setInstitution('');
         console.log(email, password, institution, cpassword)
+        navigation.replace('Login')
     }
     return (
         <SafeAreaView style={{
@@ -105,7 +106,7 @@ const CreateAccount = () => {
                     <View style={styles.container}>
                         <MaterialIcons name="keyboard-arrow-down" size={15} color="#FFFFFF" />
                         <TextInput
-                            style={{ flex: 1, color: '#29292E', marginLeft: 5 }}
+                            style={{ flex: 1, color: '#FFFFFF', marginLeft: 5 }}
                             placeholderTextColor='#29292E'
                             placeholder={'Email'}
                             onChangeText={text => {
@@ -122,7 +123,7 @@ const CreateAccount = () => {
                             source={Password}
                         />
                         <TextInput
-                            style={{ flex: 1, color: '#29292E', marginLeft: 5 }}
+                            style={{ flex: 1, color: '#FFFFFF', marginLeft: 5 }}
                             placeholderTextColor='#29292E'
                             placeholder={'Password'}
                             onChangeText={text => {
@@ -133,7 +134,7 @@ const CreateAccount = () => {
 
                         />
 
-                        <TouchableOpacity onPress={secondTogglePasswordVisibility}>
+                        <TouchableOpacity onPress={togglePasswordVisibility}>
                             <Image
                                 source={passwordVisible ? VisiblePassword : HidePassword}
                             />
@@ -149,7 +150,7 @@ const CreateAccount = () => {
                             source={Password}
                         />
                         <TextInput
-                            style={{ flex: 1, color: '#29292E', marginLeft: 5 }}
+                            style={{ flex: 1, color: '#FFFFFF', marginLeft: 5 }}
                             placeholderTextColor='#29292E'
                             placeholder={'Re-type'}
                             onChangeText={text => {
@@ -160,7 +161,7 @@ const CreateAccount = () => {
 
                         />
 
-                        <TouchableOpacity onPress={togglePasswordVisibility}>
+                        <TouchableOpacity onPress={secondTogglePasswordVisibility}>
                             <Image
                                 source={secondPasswordVisible ? VisiblePassword : HidePassword}
                             />
@@ -171,7 +172,7 @@ const CreateAccount = () => {
                     <View style={styles.container}>
 
                         <TextInput
-                            style={{ flex: 1, color: '#29292E', marginLeft: 5 }}
+                            style={{ flex: 1, color: '#FFFFFF', marginLeft: 5 }}
                             placeholderTextColor='#29292E'
                             placeholder={'FUTO (Federal university technology...)'}
                             onChangeText={text => {

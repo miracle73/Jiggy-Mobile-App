@@ -12,9 +12,10 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
     CreateAccount: undefined;
+    ForgotPassword: undefined;
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'CreateAccount'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'CreateAccount', 'ForgotPassword'>;
 
 const Login = () => {
     const navigation = useNavigation<NavigationProp>();
@@ -29,12 +30,7 @@ const Login = () => {
         setIsChecked(!isChecked);
     };
 
-    const handleLogin = () => {
-        console.log(email, password);
-        setEmail('')
-        setPassword('')
 
-    };
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
@@ -57,8 +53,7 @@ const Login = () => {
         <SafeAreaView style={{
             flex: 1,
             backgroundColor: '#181A1C',
-            // justifyContent: 'center',
-            // alignItems: 'center',
+
 
         }}>
             <StatusBar style="light" />
@@ -85,7 +80,7 @@ const Login = () => {
                     <View style={styles.container}>
                         <MaterialIcons name="keyboard-arrow-down" size={15} color="#FFFFFF" />
                         <TextInput
-                            style={{ flex: 1, color: '#29292E', marginLeft: 5 }}
+                            style={{ flex: 1, color: '#FFFFFF', marginLeft: 5 }}
                             placeholderTextColor='#29292E'
                             placeholder={'Email'}
                             onChangeText={text => {
@@ -104,7 +99,7 @@ const Login = () => {
                             source={Password}
                         />
                         <TextInput
-                            style={{ flex: 1, color: '#29292E', marginLeft: 5 }}
+                            style={{ flex: 1, color: '#FFFFFF', marginLeft: 5 }}
                             placeholderTextColor='#29292E'
                             placeholder={'Password'}
                             onChangeText={text => {
@@ -131,7 +126,10 @@ const Login = () => {
                             </TouchableOpacity>
                             <Text style={[styles.fourthText, { marginTop: 0 }]}>Remember me</Text>
                         </View>
-                        <Text style={styles.fifthText}>Forgot Password?</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+                            <Text style={styles.fifthText}>Forgot Password?</Text>
+                        </TouchableOpacity>
+
                     </View>
                     <TouchableOpacity onPress={handleSubmit} style={styles.secondContainer}>
 
