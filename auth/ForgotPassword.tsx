@@ -40,7 +40,7 @@ const ForgotPassword = () => {
     const handleSubmit = () => {
         console.log(otpCode)
         setOtpCode(['', '', '', '']);
-        navigation.navigate('Question1')
+        navigation.replace('Question1')
     }
     return (
         <SafeAreaView style={{

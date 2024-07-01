@@ -13,6 +13,7 @@ import Question2 from './auth/Question2';
 import Question3 from './auth/Question3';
 import { useEffect, useState } from 'react'
 import * as SplashScreen from 'expo-splash-screen';
+import BottomNavigation from './components/BottomNavigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +49,7 @@ export default function App() {
          <Stack.Screen name="Question1" component={Question1} options={{ headerShown: false }} />
          <Stack.Screen name="Question2" component={Question2} options={{ headerShown: false }} />
          <Stack.Screen name="Question3" component={Question3} options={{ headerShown: false }} />
+         <Stack.Screen name="BottomNavigation" component={BottomNavigation} options={{ headerShown: false }} />
       </Stack.Navigator >
     </NavigationContainer>
   );

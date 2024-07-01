@@ -13,12 +13,14 @@ import { StackNavigationProp } from '@react-navigation/stack';
 type RootStackParamList = {
     CreateAccount: undefined;
     ForgotPassword: undefined;
+    BottomNavigation: undefined;
 
 };
 type NavigationProp = StackNavigationProp<RootStackParamList, 'CreateAccount', 'ForgotPassword'>;
-
+type SecondNavigationProp = StackNavigationProp<RootStackParamList, 'BottomNavigation'>;
 const Login = () => {
     const navigation = useNavigation<NavigationProp>();
+    const secondNavigation = useNavigation<SecondNavigationProp>();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -48,6 +50,7 @@ const Login = () => {
         setEmail('');
         setPassword('');
         console.log(email, password)
+        secondNavigation.replace('BottomNavigation');
     }
     return (
         <SafeAreaView style={{

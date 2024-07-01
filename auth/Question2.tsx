@@ -22,7 +22,7 @@ const Question2 = () => {
 
     useEffect(() => {
         if (gender) {
-          navigation.navigate('Question3');
+          navigation.replace('Question3');
           setGender('');
         }
       }, [gender]);
@@ -45,7 +45,7 @@ const Question2 = () => {
                         <Image source={Jiggy} />
 
                     </View>
-                    <TouchableOpacity onPress={() =>  navigation.navigate('Question3')}>
+                    <TouchableOpacity onPress={() =>  navigation.replace('Question3')}>
                         <Text style={styles.firstText}>Skip</Text>
                     </TouchableOpacity>
                 </View>

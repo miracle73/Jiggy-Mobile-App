@@ -22,7 +22,7 @@ const Question1 = () => {
 
     const handleSubmit = () => {
         console.log(selectedValue)
-        navigation.navigate('Question2')
+        navigation.replace('Question2')
         setSelectedValue(null)
     }
     return (
@@ -43,7 +43,7 @@ const Question1 = () => {
                         <Image source={Jiggy} />
 
                     </View>
-                    <TouchableOpacity onPress={() =>  navigation.navigate('Question2')}>
+                    <TouchableOpacity onPress={() =>  navigation.replace('Question2')}>
                         <Text style={styles.firstText}>Skip</Text>
                     </TouchableOpacity>
 

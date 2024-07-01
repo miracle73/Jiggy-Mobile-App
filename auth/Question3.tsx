@@ -10,10 +10,10 @@ import Jiggy from '../assets/image/jiggy.png'
 
 
 type RootStackParamList = {
-    CreateAccount: undefined;
+    Login: undefined;
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'CreateAccount'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
 const Question3 = () => {
     const [year, setYear] = useState('')
@@ -22,6 +22,7 @@ const Question3 = () => {
 
     const handleSubmit = () => {
         console.log(year)
+        navigation.replace('Login')
     }
     return (
         <SafeAreaView style={{
@@ -54,23 +55,23 @@ const Question3 = () => {
 
                     <Text style={styles.fifthText}> What’s your graduation year? </Text>
 
-                    <TouchableOpacity style={styles.container} onPress={() => setYear('2028')}>
+                    <TouchableOpacity style={styles.container} onPress={() => {setYear('2028'); handleSubmit()}}>
                         <Text style={styles.fourthText}>2028</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => setYear('2027')}>
+                    <TouchableOpacity style={styles.container} onPress={() => {setYear('2027'); handleSubmit()}}>
                         <Text style={styles.fourthText}>2027</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => setYear('2026')}>
+                    <TouchableOpacity style={styles.container} onPress={() => {setYear('2026'); handleSubmit()}}>
                         <Text style={styles.fourthText}>2026</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => setYear('2025')}>
+                    <TouchableOpacity style={styles.container} onPress={() => {setYear('2025'); handleSubmit()}}>
                         <Text style={styles.fourthText}>2025</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => setYear('2024')}>
+                    <TouchableOpacity style={styles.container} onPress={() => {setYear('2024'); handleSubmit()}}>
                         <Text style={styles.fourthText}>2024</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.container} onPress={() => setYear('I am a graduate')}>
+                    <TouchableOpacity style={styles.container} onPress={() => {setYear('I am a graduate'); handleSubmit()}}>
                         <Text style={styles.fourthText}>I am a graduate</Text>
                     </TouchableOpacity>
                
