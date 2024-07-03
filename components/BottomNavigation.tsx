@@ -10,6 +10,7 @@ import Profile from '../BottomNavigationScreens/Profile';
 import { LinearGradient } from 'expo-linear-gradient';
 import New from '../BottomNavigationScreens/New';
 import BackgroundIcon from '../assets/image/BottomIcon.png'
+import BoostModal from './modal/BoostModal';
 
 
 const Tab = createBottomTabNavigator();
@@ -64,7 +65,10 @@ const BottomNavigation = () => {
                         headerShown: false,
                         tabBarIcon: ({ focused, color }: { focused: boolean; color: string }) => (
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                <Image source={BackgroundIcon} />
+                                <TouchableOpacity onPress={() => setModal(true)}>
+                                    <Image source={BackgroundIcon} />
+                                </TouchableOpacity>
+
                             </View>
                         ),
                         tabBarLabel: ''
@@ -106,7 +110,7 @@ const BottomNavigation = () => {
                     }}
                 />
             </Tab.Navigator>
-
+            { modal && <BoostModal setModal={setModal} modal={modal} /> }
         </>
 
     );
