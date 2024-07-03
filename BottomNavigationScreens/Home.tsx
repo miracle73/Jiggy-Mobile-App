@@ -162,7 +162,7 @@ const Home = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
         }}>
-          <View style={[styles.innerNavigation, { justifyContent: 'flex-start', gap: 4 }]}>
+          <View style={[styles.innerNavigation, { justifyContent: 'flex-start', gap: 4, marginHorizontal: 10 }]}>
 
             <View style={{ height: 26, width: 26, borderRadius: 13 }}>
               <Image source={Picture} />

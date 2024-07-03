@@ -11,6 +11,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import New from '../BottomNavigationScreens/New';
 import BackgroundIcon from '../assets/image/BottomIcon.png'
 import BoostModal from './modal/BoostModal';
+import ConversationModal from './modal/ConversationModal';
 
 
 const Tab = createBottomTabNavigator();
@@ -110,7 +111,7 @@ const BottomNavigation = () => {
                     }}
                 />
             </Tab.Navigator>
-            { modal && <BoostModal setModal={setModal} modal={modal} /> }
+            { modal && <ConversationModal setModal={setModal} modal={modal} /> }
         </>
 
     );
