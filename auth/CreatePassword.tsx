@@ -4,6 +4,9 @@ import { StatusBar } from 'expo-status-bar';
 import Background from '../assets/image/Background.jpg'
 import { MaterialIcons } from '@expo/vector-icons'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Password from '../assets/image/lock.png'
+import VisiblePassword from '../assets/image/visiblePassword.png'
+import HidePassword from '../assets/image/hidepassword.png'
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -13,25 +16,51 @@ type RootStackParamList = {
 };
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
-const ForgotPassword = () => {
+const CreatePassword = () => {
     const navigation = useNavigation<NavigationProp>();
-    const [email, setEmail] = useState('');
+
+    const [password, setPassword] = useState('');
+  
+    const [cpassword, setCPassword] = useState('');
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [secondPasswordVisible, setSecondPasswordVisible] = useState(false);
     const [loading, setLoading] = useState(false)
+
+
+
    
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+    const secondTogglePasswordVisibility = () => {
+        setSecondPasswordVisible(!secondPasswordVisible);
+    };
+    const isPasswordMatch = (password: string, confirmPassword: string): boolean => {
+        return password === confirmPassword;
+    };
 
     const handleSubmit = () => {
         setLoading(true)
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address');
+      
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            alert('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character');
             setLoading(false);
             return;
         }
-      
-      
-        setEmail('');
-   
-        console.log(email)
+        if (!isPasswordMatch(password, cpassword)) {
+            alert("Passwords do not match.");
+            setCPassword("")
+            setPassword("")
+            setLoading(false);
+            return;
+        }
+  
+        setPassword('');
+        setCPassword('');
+    
+        console.log( password, cpassword)
         navigation.replace('Login')
     }
     return (
@@ -47,38 +76,73 @@ const ForgotPassword = () => {
                 paddingTop: 50
             }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-                    <TouchableOpacity style={styles.curvedContainer}>
+                    <View style={styles.curvedContainer}>
                         <MaterialIcons name="arrow-back-ios" size={12} color="#FFFFFF" style={{ marginLeft: 5 }} />
-                    </TouchableOpacity>
-                    <Text style={styles.firstText}>forgot password</Text>
+                    </View>
+                    <Text style={styles.firstText}>Create new password</Text>
                 </View>
                 <KeyboardAwareScrollView
                     contentContainerStyle={{ flexGrow: 1 }}
                     keyboardShouldPersistTaps='handled'
                     showsVerticalScrollIndicator={false}
                 >
-                    <Text style={styles.secondText}>Forgot password </Text>
-                    <Text style={[styles.thirdText, { marginTop: 10, marginBottom: 20 }]}>
-                        Enter your email and we will send an email with instructions to reset your password.
-                    </Text>
+                    <Text style={styles.secondText}>Create new password</Text>
+                    <Text style={[styles.thirdText, { marginTop: 10, marginBottom: 20 }]}>Your new password must be different from te old one.</Text>
 
-                    <Text style={[styles.fourthText]}> Email </Text>
-                    <View style={styles.container}>
-                        <MaterialIcons name="keyboard-arrow-down" size={15} color="#FFFFFF" />
+                
+
+                    <Text style={[styles.fourthText, { marginTop: 20 }]}> Password </Text>
+                    <View style={[styles.container]}>
+                        <Image
+                            source={Password}
+                        />
                         <TextInput
                             style={{ flex: 1, color: '#FFFFFF', marginLeft: 5 }}
                             placeholderTextColor='#29292E'
-                            placeholder={'Email'}
+                            placeholder={'Password'}
                             onChangeText={text => {
-                                setEmail(text);
+                                setPassword(text);
                             }}
-                            value={email}
+                            secureTextEntry={!passwordVisible}
+                            value={password}
 
                         />
+
+                        <TouchableOpacity onPress={togglePasswordVisibility}>
+                            <Image
+                                source={passwordVisible ? VisiblePassword : HidePassword}
+                            />
+                        </TouchableOpacity>
+
                     </View>
 
+                    <Text style={[styles.fourthText, { marginTop: 20 }]}> Re-type password </Text>
+
+
+                    <View style={[styles.container]}>
+                        <Image
+                            source={Password}
+                        />
+                        <TextInput
+                            style={{ flex: 1, color: '#FFFFFF', marginLeft: 5 }}
+                            placeholderTextColor='#29292E'
+                            placeholder={'Re-type'}
+                            onChangeText={text => {
+                                setCPassword(text);
+                            }}
+                            secureTextEntry={!secondPasswordVisible}
+                            value={cpassword}
+
+                        />
+
+                        <TouchableOpacity onPress={secondTogglePasswordVisibility}>
+                            <Image
+                                source={secondPasswordVisible ? VisiblePassword : HidePassword}
+                            />
+                        </TouchableOpacity>
+
+                    </View>
                   
-        
                     <TouchableOpacity onPress={handleSubmit} style={styles.secondContainer}>
 
                         {loading ? (
@@ -93,24 +157,13 @@ const ForgotPassword = () => {
 
                                 }}
                             >
-                                Submit
+                                Reset password
                             </Text>
                         )}
 
 
                     </TouchableOpacity>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10, gap: 6 }}>
-                        <Text style={[styles.fourthText, { color: '#FFF8E7', textAlign: 'center' }]}> Already have an account? </Text>
-                        <TouchableOpacity onPress={() => navigation.replace('Login')}>
-                            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', }}>
-
-                                <Text style={[styles.fourthText, { color: '#F33F5E' }]}>
-                                    Sign in
-                                </Text>
-
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+               
                 </KeyboardAwareScrollView>
             </ImageBackground>
         </SafeAreaView>
@@ -159,7 +212,12 @@ const styles = StyleSheet.create({
         fontSize: 14,
         marginTop: 10
     },
-   
+    fifthText: {
+        color: '#29292E',
+        fontWeight: "400",
+        fontSize: 14,
+
+    },
     container: {
         height: 50,
         flexDirection: 'row',
@@ -172,7 +230,18 @@ const styles = StyleSheet.create({
         marginTop: 10
 
     },
- 
+    checkbox: {
+        width: 25,
+        height: 25,
+        borderColor: '#96969C',
+        borderWidth: 1,
+        borderRadius: 7,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 10,
+        backgroundColor: 'transparent',
+    },
 })
 
-export default ForgotPassword
+export default CreatePassword

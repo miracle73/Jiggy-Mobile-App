@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react'; // Add React here
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,13 +8,13 @@ import SecondSplashScreen from './splash/SecondSplashScreen';
 import ThirdSplashScreen from './splash/ThirdSplashScreen';
 import Login from './auth/Login';
 import CreateAccount from './auth/CreateAccount';
-import ForgotPassword from './auth/ForgotPassword';
+import Verification from './auth/Verification';
 import Question1 from './auth/Question1';
 import Question2 from './auth/Question2';
 import Question3 from './auth/Question3';
-import { useEffect, useState } from 'react'
 import * as SplashScreen from 'expo-splash-screen';
 import BottomNavigation from './components/BottomNavigation';
+import ForgotPassword from './auth/ForgotPassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +46,7 @@ export default function App() {
          <Stack.Screen name="ThirdSplashScreen" component={ThirdSplashScreen} options={{ headerShown: false }} />
          <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ headerShown: false }} />
          <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+         <Stack.Screen name="Verification" component={Verification} options={{ headerShown: false }} />
          <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
          <Stack.Screen name="Question1" component={Question1} options={{ headerShown: false }} />
          <Stack.Screen name="Question2" component={Question2} options={{ headerShown: false }} />
