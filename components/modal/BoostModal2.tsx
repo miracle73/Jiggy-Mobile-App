@@ -9,7 +9,7 @@ interface BoostModalProps {
     setModal: (value: boolean) => void;
     modal: boolean;
 }
-const BoostModal = ({ setModal, modal }: BoostModalProps) => {
+const BoostModal2 = ({ setModal, modal }: BoostModalProps) => {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const timeBoost = [
         {
@@ -59,8 +59,9 @@ const BoostModal = ({ setModal, modal }: BoostModalProps) => {
                         alignItems: 'center',
                     }}>
                         <Image source={Icon} style={{ height: 40, width: 40 }} />
-                        <Text style={styles.secondText}>You have boosted this post</Text>
-                        <Text style={styles.thirdText}>You can prolong post for another hour!</Text>
+                        <Text style={styles.secondText}>Boost this post!</Text>
+                        <Text style={styles.thirdText}>Post will boosted to the top of everyone feed
+                        for an hour</Text>
                     </View>
                     <View style={styles.secondContainer}>
                         <Text style={styles.fourthText}>Text (optional)</Text>
@@ -105,7 +106,7 @@ const BoostModal = ({ setModal, modal }: BoostModalProps) => {
                             Boost
                         </Text>
                     </TouchableOpacity>
-                    <Text style={styles.eighthText}>   30 Jigs will be deducted</Text>
+                  
 
                 </View>
             </View>
@@ -227,4 +228,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default BoostModal
+export default BoostModal2

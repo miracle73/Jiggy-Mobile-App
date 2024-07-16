@@ -58,15 +58,15 @@ const Verification = () => {
                     <View style={styles.curvedContainer}>
                         <MaterialIcons name="arrow-back-ios" size={12} color="#FFFFFF" style={{ marginLeft: 5 }} />
                     </View>
-                    <Text style={styles.firstText}>Forgot password</Text>
+                    <Text style={styles.firstText}>Verification</Text>
                 </View>
                 <KeyboardAwareScrollView
                     contentContainerStyle={{ flexGrow: 1 }}
                     keyboardShouldPersistTaps='handled'
                     showsVerticalScrollIndicator={false}
                 >
-                    <Text style={[styles.secondText, { marginTop: 20 }]}>Forgot password</Text>
-                    <Text style={[styles.thirdText, { marginTop: 10, marginBottom: 20 }]}>Sign up your account to continue  </Text>
+                    <Text style={[styles.secondText, { marginTop: 20 }]}>Verification</Text>
+                    <Text style={[styles.thirdText, { marginTop: 10, marginBottom: 20 }]}>Enter verificatiion code.</Text>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         {otpCode.map((char, index) => (

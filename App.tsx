@@ -15,6 +15,8 @@ import Question3 from './auth/Question3';
 import * as SplashScreen from 'expo-splash-screen';
 import BottomNavigation from './components/BottomNavigation';
 import ForgotPassword from './auth/ForgotPassword';
+import CheckEmail from './auth/CheckEmail';
+import CreatePassword from './auth/CreatePassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +53,8 @@ export default function App() {
          <Stack.Screen name="Question1" component={Question1} options={{ headerShown: false }} />
          <Stack.Screen name="Question2" component={Question2} options={{ headerShown: false }} />
          <Stack.Screen name="Question3" component={Question3} options={{ headerShown: false }} />
+         <Stack.Screen name="CheckEmail" component={CheckEmail} options={{ headerShown: false }} />
+         <Stack.Screen name="CreatePassword" component={CreatePassword} options={{ headerShown: false }} />
          <Stack.Screen name="BottomNavigation" component={BottomNavigation} options={{ headerShown: false }} />
       </Stack.Navigator >
     </NavigationContainer>

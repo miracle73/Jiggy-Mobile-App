@@ -8,17 +8,18 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import Message from '../assets/image/msg.png'
 
 type RootStackParamList = {
-    Question1: undefined;
+    CreatePassword: undefined;
+    ForgotPassword: undefined
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'Question1'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'CreatePassword', 'ForgotPassword'>;
 
 const CheckEmail = () => {
     const navigation = useNavigation<NavigationProp>();
 
     const handleSubmit = () => {
- 
-        navigation.replace('Question1')
+
+        // navigation.replace('Question1')
     }
     return (
         <SafeAreaView style={{
@@ -36,24 +37,32 @@ const CheckEmail = () => {
                     <TouchableOpacity style={styles.curvedContainer} onPress={() => navigation.goBack()}>
                         <MaterialIcons name="arrow-back-ios" size={12} color="#FFFFFF" style={{ marginLeft: 5 }} />
                     </TouchableOpacity>
-                    <View style={{ justifyContent: 'space-between', alignItems: 'center', gap: 12, marginTop: 150 }}>
+                    <View style={{ justifyContent: 'space-between', alignItems: 'center', gap: 12, marginTop: 100, }}>
                         <View>
-                            <Image source={Message} />
-                            <Text style={[styles.firstText, { marginTop: 20 }]}>Check your mail</Text>
-                            <Text style={[styles.secondText, { marginTop: 10 }]}>We have sent a password recovery instrctions to your email</Text>
+                            <View style={{ justifyContent: "center", alignItems: "center", }}>
+                                <View style={{ height: 70, width: 70, backgroundColor: "#1D253A", borderRadius: 70, flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+                                    <Image source={Message} />
+                                </View>
+                                <Text style={[styles.firstText, { marginTop: 20 }]}>Check your mail</Text>
+                                <Text style={[styles.secondText, { marginTop: 10 }]}>We have sent a password recovery instrctions to your email</Text>
+                            </View>
                         </View>
-                        <View style={{ marginTop: 50 }}>
+                        <View style={{ marginTop: 70 }}>
                             <TouchableOpacity style={styles.container}>
                                 <Text style={styles.thirdText}>Open email app</Text>
                             </TouchableOpacity>
-                            <Text style={[styles.secondText, { marginTop: 10 }]}>Skip, i’ll confirm later</Text>
+                            <TouchableOpacity onPress={() => navigation.replace("CreatePassword")}>
+                                <Text style={[styles.secondText, { marginTop: 10 }]}>Skip, i’ll confirm later</Text>
+                            </TouchableOpacity>
                         </View>
-                        <View>
+                        <View style={{ marginTop: 100 }}>
                             <Text style={styles.fourthText}>Didn’t recieve an email?Check your spam, junk
                             </Text>
                             <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                                 <Text style={styles.sixthText}>or  </Text>
-                                <Text style={styles.fifthText}>Try another email address </Text>
+                                <TouchableOpacity onPress={() => navigation.replace("ForgotPassword")}>
+                                    <Text style={styles.fifthText}>Try another email address </Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
 
@@ -80,11 +89,13 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontWeight: "600",
         fontSize: 20,
+        textAlign: "center"
     },
     secondText: {
         color: '#96969C',
         fontWeight: "500",
         fontSize: 14,
+        textAlign: "center"
     },
     thirdText: {
         color: '#FFFFFF',
@@ -94,13 +105,13 @@ const styles = StyleSheet.create({
     fourthText: {
         color: '#96969C',
         fontWeight: "600",
-        fontSize: 16,
+        fontSize: 14,
         marginTop: 10
     },
     fifthText: {
         color: '#F33F5E',
         fontWeight: "600",
-        fontSize: 16,
+        fontSize: 14,
 
     },
     sixthText: {
@@ -131,7 +142,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         backgroundColor: 'transparent',
     },
-   
+
 })
 
 export default CheckEmail

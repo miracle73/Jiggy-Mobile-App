@@ -8,10 +8,11 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
+    CheckEmail: undefined;
     Login: undefined;
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'CheckEmail', 'Login'>;
 
 const ForgotPassword = () => {
     const navigation = useNavigation<NavigationProp>();
@@ -32,7 +33,7 @@ const ForgotPassword = () => {
         setEmail('');
    
         console.log(email)
-        navigation.replace('Login')
+        navigation.replace('CheckEmail')
     }
     return (
         <SafeAreaView style={{
@@ -47,7 +48,7 @@ const ForgotPassword = () => {
                 paddingTop: 50
             }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-                    <TouchableOpacity style={styles.curvedContainer}>
+                    <TouchableOpacity style={styles.curvedContainer} onPress={() => navigation.goBack()}>
                         <MaterialIcons name="arrow-back-ios" size={12} color="#FFFFFF" style={{ marginLeft: 5 }} />
                     </TouchableOpacity>
                     <Text style={styles.firstText}>forgot password</Text>

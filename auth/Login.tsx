@@ -66,9 +66,9 @@ const Login = () => {
                 paddingTop: 80
             }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-                    <View style={styles.curvedContainer}>
+                    <TouchableOpacity style={styles.curvedContainer} onPress={() => navigation.goBack()}>
                         <MaterialIcons name="arrow-back-ios" size={12} color="#FFFFFF" style={{ marginLeft: 5 }} />
-                    </View>
+                    </TouchableOpacity>
                     <Text style={styles.firstText}>Continue with email</Text>
                 </View>
                 <KeyboardAwareScrollView

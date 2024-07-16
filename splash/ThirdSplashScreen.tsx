@@ -22,15 +22,15 @@ type NavigationProp = StackNavigationProp<RootStackParamList, 'Login', ' CreateA
 
 const ThirdSplashScreen = () => {
     const navigation = useNavigation<NavigationProp>();
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const timer = setTimeout(() => {
-    //         navigation.replace('Login');
-    //     }, 5000);
+        const timer = setTimeout(() => {
+            navigation.navigate('Login');
+        }, 5000);
 
-    //     return () => clearTimeout(timer);
+        return () => clearTimeout(timer);
 
-    // }, [navigation]);
+    }, [navigation]);
     return (
         <SafeAreaView style={{
             flex: 1,

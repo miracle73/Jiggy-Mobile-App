@@ -12,9 +12,10 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
     Login: undefined;
+    Verification: undefined;
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Login', 'Verification'>;
 
 const CreateAccount = () => {
     const navigation = useNavigation<NavigationProp>();
@@ -74,7 +75,7 @@ const CreateAccount = () => {
         setCPassword('');
         setInstitution('');
         console.log(email, password, institution, cpassword)
-        navigation.replace('Login')
+        navigation.replace('Verification')
     }
     return (
         <SafeAreaView style={{
