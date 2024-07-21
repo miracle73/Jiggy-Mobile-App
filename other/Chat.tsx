@@ -9,7 +9,7 @@ import { MaterialIcons, Entypo, AntDesign, FontAwesome } from '@expo/vector-icon
 const Chat = () => {
     const [message, setMessage] = useState("")
     return (
-        <SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <SafeAreaView style={{ flex: 1, justifyContent: "space-between" }}>
             <StatusBar style="light" />
             <View style={{
                 flexDirection: 'row', justifyContent: "space-between", alignItems: "center", paddingHorizontal: 20,
@@ -25,20 +25,20 @@ const Chat = () => {
                 </View>
                 <Entypo name="dots-three-vertical" size={12} color="#FFFFFF" />
             </View>
-            <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
+            <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, backgroundColor: "#000000" }}>
                 <View style={{}}>
 
                 </View>
             </ScrollView>
 
-            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 20 }}>
+            <View style={styles.fourthContainer}>
                 <View style={styles.secondContainer}>
                     <AntDesign name="plus" color="#FFFFFF" size={12} />
                 </View>
-                <View style={{ height: 52, width: "65%", }}>
+                <View style={styles.thirdContainer}>
                     <TextInput
-                        style={{ color: "#29292E" }}
-                        placeholderTextColor='#29292E'
+                        style={{ color: "#72777A" }}
+                        placeholderTextColor='#72777A'
                         placeholder={'Type your message'}
                         onChangeText={text => {
                             setMessage(text);
@@ -47,7 +47,7 @@ const Chat = () => {
 
                     />
                     <TouchableOpacity>
-                        <FontAwesome name="send" color="#B20000" size={15} />
+                        <FontAwesome name="send" color="#B20000" size={20} />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -56,27 +56,16 @@ const Chat = () => {
 };
 
 const styles = StyleSheet.create({
-    fifthContainer: {
-        height: 10,
-        borderRadius: 14,
-        backgroundColor: "#F33F5E",
-        width: "50%",
-    },
+ 
     fourthContainer: {
-        height: 10,
-        marginHorizontal: 20,
-        borderRadius: 16,
-        backgroundColor: "#1E1E1E",
+        flexDirection: "row",
+        paddingVertical: 10,
+        justifyContent: "space-between",
+        alignItems: "center",
+        paddingHorizontal: 20,
+        backgroundColor: '#1E1E1E',
     },
-    navigation: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderBottomWidth: 4,
-        borderColor: '#1E1E1E',
-        paddingHorizontal: 10,
-        paddingBottom: 15,
-    },
+   
     firstText: {
         color: '#B20000',
         fontWeight: '400',
@@ -95,12 +84,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontStyle: "normal",
     },
-    innerNavigation: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '50%',
-    },
+ 
     firstContainer: {
         flexDirection: 'row',
         justifyContent: "center",
@@ -114,19 +98,21 @@ const styles = StyleSheet.create({
         height: 52,
         width: 52,
         borderRadius: 40,
-        backgroundColor: "#1E1E1E"
+        backgroundColor: '#2A2A2A',
+        elevation: 10,
 
     },
 
     thirdContainer: {
-        height: 150,
-        borderRadius: 10,
-        alignItems: 'center',
-        marginVertical: 10,
-        backgroundColor: '#FFFFFF',
-        paddingHorizontal: 10,
-        paddingTop: 10,
-    },
+        height: 52,
+        width: "75%",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        backgroundColor: '#2A2A2A',
+        borderRadius: 25,
+        paddingHorizontal: 10
+    }
 });
 
 export default Chat;

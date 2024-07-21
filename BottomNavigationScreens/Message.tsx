@@ -52,7 +52,7 @@ const Message = () => {
             </TouchableOpacity>
           ))}
         </View>
-        <View style={{ paddingTop: 10 }}>
+        <View style={{ paddingTop: 10,  }}>
           {activeTab === 'All' && <MessageAll />}
           {activeTab === 'Request' && <MessageRequest />}
           {activeTab === 'Random' && <MessageRandom />}

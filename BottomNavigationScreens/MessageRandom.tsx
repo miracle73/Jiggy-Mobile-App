@@ -1,26 +1,24 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import Bear from '../assets/image/Bear.png'
+import { FontAwesome } from '@expo/vector-icons'
 
-const  MessageRandom = () => {
+
+const MessageRandom = () => {
   return (
     <View>
       <View style={styles.container}>
-        <View style={styles.roundedContainer}>
-          <Image source={Bear} />
+        <View style={{ flexDirection: "row", justifyContent: "flex-end", alignItems: "center", }}>
+          <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 4 }}>
+            <FontAwesome name="signal" size={12} color="#0C9229" />
+            <Text style={styles.secondText}>100 people online</Text>
+            <View style={{ height: 3, width: 3, borderRadius: 3, backgroundColor: "#0C9229" }}></View>
+          </View>
         </View>
-        <View style={styles.secondContainer}>
-          <View style={{ width: "50%" }}>
-            <Text style={styles.firstText}>Anonymous m.</Text>
-            <Text style={styles.secondText}>Hi there!</Text>
-          </View>
-          <View style={{ justifyContent:  "center", alignItems: "flex-end"
-          }}>
-            <Text style={styles.thirdText}>9.56 AM</Text>
-            <View style={styles.thirdContainer}>
-              <Text style={styles.fourthText}>2</Text>
-            </View>
-          </View>
+        <Text style={[styles.firstText, { marginTop: 200 }]}>Get ready to meet new people and  have fun.</Text>
+        <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: 8 }}>
+          <TouchableOpacity style={styles.roundedContainer}>
+            <Text style={styles.firstText}>Start chatting</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -29,59 +27,38 @@ const  MessageRandom = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    gap: 4,
-    alignItems: "center",
-    paddingHorizontal: 10,
-    borderBottomWidth: 1,
-    borderColor: "#1E1E1ECC",
-    paddingVertical: 10
+
+    paddingHorizontal: 20,
+    flex: 1,
 
 
   },
   roundedContainer: {
-    height: 36,
-    width: 36,
-    borderRadius: 25
-  },
-  secondContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    flex: 1,
-    marginLeft: 8
-
-  },
-  thirdContainer: {
-    width: 12,
-    height: 15,
-    borderRadius: 15,
+    height: 40,
+    width: "45%",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "red"
+    backgroundColor: "#F33F5E",
+    borderRadius: 18
   },
+  secondContainer: {
+
+  },
+
   firstText: {
-    fontWeight: "700",
+    fontWeight: "600",
     fontSize: 16,
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    textAlign: "center",
+
   },
   secondText: {
     fontWeight: "600",
-    fontSize: 15,
-    color: "#777777"
+    fontSize: 12,
+    color: "#FFFFFF",
   },
-  thirdText: {
-    fontWeight: "600",
-    fontSize: 14,
-    color: "#FFFFFF"
-  },
-  fourthText: {
-    fontWeight: "600",
-    fontSize: 8,
-    color: "#FFFFFF"
-  }
+
 })
 
 export default MessageRandom
