@@ -6,10 +6,20 @@ import Search from '../assets/image/search.png';
 import MessageAll from './MessageAll';
 import MessageRandom from './MessageRandom';
 import MessageRequest from './MessageRequest';
+import ScanModal from '../components/modal/ScanModal';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type RootStackParamList = {
+  Chat: undefined;
+
+};
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Chat'>;
 
 const Message = () => {
-  const [activeTab, setActiveTab] = useState('All');
-
+  const [activeTab, setActiveTab] = useState('Request');
+  const [modal, setModal] = useState(false)
+  const navigation = useNavigation<NavigationProp>();
   const handleTabPress = (tab: any) => {
     setActiveTab(tab);
   };
@@ -21,9 +31,13 @@ const Message = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.navigation}>
           <Text style={styles.firstText}>Message</Text>
-          <View style={{ flexDirection: "row", justifyContent: "center", gap: 8, alignItems: "center" }}>
-            <Image source={Frame} />
-            <Image source={Search} />
+          <View style={{ flexDirection: "row", justifyContent: "center", gap: 16, alignItems: "center" }}>
+            <TouchableOpacity onPress={() => setModal(true)}>
+              <Image source={Frame} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Chat")}>
+              <Image source={Search} />
+            </TouchableOpacity>
           </View>
         </View>
         <View style={{ flexDirection: "row", marginTop: 10, justifyContent: "flex-start", gap: 16, alignItems: "center", paddingHorizontal: 10, }}>
@@ -31,19 +45,20 @@ const Message = () => {
             <TouchableOpacity key={tab} onPress={() => handleTabPress(tab)}>
               <Text style={{
                 color: activeTab === tab ? '#F33F5E' : '#777777',
-                fontWeight: '600' as '600', // Specify font weight as a valid type
+                fontWeight: '600' as '600',
                 fontSize: 15,
                 textDecorationLine: activeTab === tab ? 'underline' : 'none',
               }}>{tab}</Text>
             </TouchableOpacity>
           ))}
         </View>
-        <View>
+        <View style={{ paddingTop: 10 }}>
           {activeTab === 'All' && <MessageAll />}
           {activeTab === 'Request' && <MessageRequest />}
           {activeTab === 'Random' && <MessageRandom />}
         </View>
       </ScrollView>
+      {modal && <ScanModal modal={modal} setModal={setModal} />}
     </SafeAreaView>
   );
 };

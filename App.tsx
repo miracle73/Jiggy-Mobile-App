@@ -17,6 +17,7 @@ import BottomNavigation from './components/BottomNavigation';
 import ForgotPassword from './auth/ForgotPassword';
 import CheckEmail from './auth/CheckEmail';
 import CreatePassword from './auth/CreatePassword';
+import Chat from './other/Chat';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +54,7 @@ export default function App() {
          <Stack.Screen name="Question1" component={Question1} options={{ headerShown: false }} />
          <Stack.Screen name="Question2" component={Question2} options={{ headerShown: false }} />
          <Stack.Screen name="Question3" component={Question3} options={{ headerShown: false }} />
+         <Stack.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
          <Stack.Screen name="CheckEmail" component={CheckEmail} options={{ headerShown: false }} />
          <Stack.Screen name="CreatePassword" component={CreatePassword} options={{ headerShown: false }} />
          <Stack.Screen name="BottomNavigation" component={BottomNavigation} options={{ headerShown: false }} />
