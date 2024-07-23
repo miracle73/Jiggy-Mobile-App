@@ -443,6 +443,11 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 12,
   },
+  tenthText: {
+    color: '#777777',
+    fontWeight: "700",
+    fontSize: 12,
+  },
   innerNavigation: {
     flexDirection: 'row',
     justifyContent: 'space-between',
