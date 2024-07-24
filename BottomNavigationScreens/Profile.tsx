@@ -1,241 +1,110 @@
 import { View, Text, SafeAreaView, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
-import { EvilIcons, AntDesign, Entypo, MaterialCommunityIcons } from '@expo/vector-icons'
-import Union from '../assets/image/Best.png'
-import Picture from '../assets/image/Picture.png'
-import Message from '../assets/image/message.png'
-import Best from '../assets/image/Best2.png'
-import Icon from '../assets/image/Best3.png'
-import Background from '../assets/image/post.png'
-import Background2 from '../assets/image/Background2.png'
-import Background3 from '../assets/image/Background3.png'
+import { MaterialIcons } from '@expo/vector-icons'
+import ProfileIcon from '../assets/image/ProfileIcon.png'
+import Bear from '../assets/image/Bear.png'
+import Hot from '../assets/image/Hot.png'
+import Cup from '../assets/image/cup.png'
+
 import { LinearGradient } from 'expo-linear-gradient';
-import Heart from '../assets/image/Heart.png'
-import PostImage from '../assets/image/postImage.png'
+
 
 const Profile = () => {
   return (
     <SafeAreaView style={{
       flex: 1,
-      backgroundColor: '#131212',
-      paddingTop: 50
+      backgroundColor: '#121212',
+      paddingTop: 50,
+      paddingHorizontal: 20
     }}>
       <StatusBar style="light" />
       <ScrollView showsVerticalScrollIndicator={false}>
-
-        <View style={styles.navigation}>
-          <View style={styles.innerNavigation}>
-            <EvilIcons name="navicon" size={25} style={{ color: '#FFFFFF', opacity: 0.4 }} />
-            <Text style={styles.firstText}>All</Text>
-            <Text style={[styles.secondText, { marginLeft: 8 }]}>IMSU</Text>
-            <Text style={styles.secondText}>Discover</Text>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+          <Text style={styles.firstText}>Profile</Text>
+          <View style={{ flexDirection: "row", justifyContent: "flex-end", gap: 6, alignItems: "center" }}>
+            <Text style={styles.secondText}>Balance:</Text>
+            <Text style={[styles.secondText, { color: "#FFFFFF" }]}>1000 Jigs</Text>
           </View>
-          <AntDesign name="search1" size={25} style={{ color: '#FFFFFF', opacity: 0.4 }} />
         </View>
-
-
-        <View style={styles.firstContainer}>
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-            <View style={[styles.innerNavigation, { justifyContent: 'flex-start', gap: 4 }]}>
-
-              <View style={{ height: 26, width: 26, borderRadius: 13 }}>
-                <Image source={Picture} />
-              </View>
-              <View>
-                <Text style={styles.fifthText}>Anonymous</Text>
-                <Text style={styles.thirdText}>12h ago . IMSU</Text>
-              </View>
-
+        <View style={styles.container}>
+          <View style={{ flexDirection: "row", gap: 6, justifyContent: "flex-end", alignItems: "center" }}>
+            <Image source={ProfileIcon} />
+            <View>
+              <Text style={styles.thirdText}>Anonymous</Text>
+              <Text style={styles.fourthText}>Darrere@gmail.com</Text>
+              <Text style={styles.fifthText}>ID:20399384</Text>
             </View>
-            <Entypo name="dots-three-horizontal" size={12} style={{ color: '#FFFFFF', marginRight: 15 }} />
           </View>
-          <Text style={styles.sixthText}>Have a great day with my amazing client all
-            the way from NewYork</Text>
-          <Text style={[styles.fourthText, { fontSize: 12, paddingHorizontal: 0, marginTop: 5 }]}>Have a great day with my amazing client all the way
-            from NewYork</Text>
-          <View style={{
-            backgroundColor: '#3300FF', height: 20, width: 30, borderRadius: 10, flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 5
-          }}>
-            <Text style={styles.seventhText}>DM</Text>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <View style={{ flexDirection: "row", gap: 2, justifyContent: "center", alignItems: "center" }}>
+              <Image source={Hot} />
+              <Text style={styles.sixthText}>13k</Text>
+            </View>
+            <Text style={styles.seventhText}>Aura point</Text>
           </View>
-
-          <View style={[styles.innerNavigation, { width: '100%' }]}>
-
-            <View style={[styles.simpleContainer, { gap: 4, borderRightWidth: 1, borderRightColor: '#C4C4C4' }]}>
-              <Entypo name="arrow-bold-up" size={25} color="#F33F5E" />
-              <Text style={[styles.eighthText, { marginLeft: 2 }]}>803</Text>
-              <MaterialCommunityIcons name="arrow-down-bold-outline" size={25} color="#C4C4C4" style={{ marginRight: 8 }} />
-            </View>
-            <View style={[styles.simpleContainer, { gap: 4, borderRightWidth: 1, borderRightColor: '#C4C4C4' }]}>
-              <Image source={Message} />
-              <Text style={[styles.eighthText, { color: "#FFFFFF", marginRight: 8 }]}>4682</Text>
-            </View>
-            <View style={styles.simpleContainer}>
-              <Image source={Best} />
-              <Text style={[styles.eighthText, { color: "#FFFFFF" }]}>20</Text>
-            </View>
-            <AntDesign name="upload" size={25} color="#FFFFFF" style={{ marginLeft: 15 }} />
-          </View>
-
         </View>
         <View style={styles.secondContainer}>
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            gap: 8,
-            paddingTop: 10
-          }}>
-            <Image source={Union} style={{}} />
-            <Text style={styles.thirdText}>Anonymous Boosted this post</Text>
+          <View style={{ flexDirection: "row", paddingVertical: 10, borderBottomWidth: 1, borderColor: "#777777", justifyContent: "space-between", alignItems: "center" }}>
+            <Text style={styles.eighthText}>My post</Text>
+            <MaterialIcons name="arrow-forward-ios" size={15} color="#FFFFFF" />
           </View>
-
-          <ImageBackground
-            source={Background}
-            style={styles.thirdContainer}
-            imageStyle={{ borderRadius: 7 }}
-          >
-
-            <View style={[styles.innerNavigation, { width: '100%', justifyContent: 'center', gap: 4, }]}>
-
-              <View style={{ height: 26, width: 26, borderRadius: 13 }}>
-                <Image source={Picture} />
-              </View>
-              <View>
-                <Text style={styles.fifthText}>Anonymous</Text>
-                <Text style={styles.thirdText}>12h ago . IMSU</Text>
-              </View>
-
-            </View>
-            <Text
-              style={{
-                color: '#E3E3E3',
-                fontWeight: "700",
-                fontSize: 14,
-                textAlign: 'center',
-                marginTop: 20
-              }}
-            >
-              I was so horny
-            </Text>
-
-          </ImageBackground>
-          <View style={[styles.innerNavigation, { width: '100%', marginBottom: 10 }]}>
-
-            <View style={[styles.simpleContainer, { gap: 4, borderRightWidth: 1, borderRightColor: '#C4C4C4' }]}>
-
-              <MaterialCommunityIcons name="arrow-up-bold-outline" size={25} color="#C4C4C4" />
-              <Text style={[styles.eighthText, { marginLeft: 2, color: '#B20000' }]}>803</Text>
-              <Entypo name="arrow-bold-down" size={25} color="#B20000" />
-            </View>
-            <View style={[styles.simpleContainer, { gap: 4, borderRightWidth: 1, borderRightColor: '#C4C4C4' }]}>
-              <Image source={Message} />
-              <Text style={[styles.eighthText, { color: "#FFFFFF", marginRight: 8 }]}>4682</Text>
-            </View>
-            <View style={styles.simpleContainer}>
-              <Image source={Icon} />
-              <Text style={[styles.eighthText, { color: "#FFFFFF" }]}>20</Text>
-            </View>
-            <AntDesign name="upload" size={25} color="#FFFFFF" style={{ marginLeft: 15 }} />
+          <View style={{ flexDirection: "row", paddingVertical: 10, justifyContent: "space-between", alignItems: "center" }}>
+            <Text style={styles.eighthText}>Bookmark</Text>
+            <MaterialIcons name="arrow-forward-ios" size={15} color="#FFFFFF" />
           </View>
         </View>
-
-        <View style={styles.firstContainer}>
-          <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-            <View style={[styles.innerNavigation, { justifyContent: 'flex-start', gap: 4 }]}>
-
-              <View style={{ height: 26, width: 26, borderRadius: 13 }}>
-                <Image source={Picture} />
-              </View>
-              <View>
-                <Text style={styles.fifthText}>Anonymous</Text>
-                <Text style={styles.thirdText}>12h ago . IMSU</Text>
-              </View>
-
+        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 10, marginTop: 30 }}>
+          <Text style={styles.firstText}>Leaderboard</Text>
+          <MaterialIcons name="arrow-forward-ios" size={15} color="#FFFFFF" />
+        </View>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 4, paddingHorizontal: 10, marginTop: 20 }}>
+          <View style={styles.thirdContainer}>
+            <Text style={styles.tenthText}>2</Text>
+            <View style={styles.roundedContainer}>
+              <Image source={Bear} />
             </View>
-            <Entypo name="dots-three-horizontal" size={12} style={{ color: '#FFFFFF', marginRight: 15 }} />
+            <Text style={styles.tenthText}>Anonymous</Text>
+            <Text style={[styles.tenthText, { fontSize: 12, color: "#C0C0C0" }]}>2000 points</Text>
           </View>
-          <Text style={styles.sixthText}>Have a great day with my amazing client all
-            the way from NewYork</Text>
-
-          <View style={{
-            backgroundColor: '#1A1151', height: 20, width: 30, borderRadius: 10, flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: 5
-          }}>
-            <Text style={styles.seventhText}>Poll</Text>
-          </View>
-
-
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginHorizontal: 20, marginBottom: 5, marginTop: 10 }}>
-          <Text style={styles.ninthText}>Sure</Text>
-          <Text style={styles.tenthText}>61 Vote</Text>
-        </View>
-        <View style={styles.fourthContainer}>
-          <View style={styles.fifthContainer}>
-
-          </View>
-        </View>
-        <View style={{ borderWidth: 1, borderColor: "#34C759", borderRadius: 3, paddingBottom: 20, paddingTop: 10, marginVertical: 15, marginBottom: 25, backgroundColor: "#1E1E1E", marginHorizontal: 20 }}>
-          <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginHorizontal: 20, marginBottom: 5 }}>
-            <Text style={[styles.ninthText, { color: "#34C759" }]}>Fill</Text>
-            <Text style={[styles.tenthText, { color: "#FFFFFF" }]}>30 Voted</Text>
-          </View>
-          <View style={[styles.fourthContainer, { backgroundColor: "#777777" }]}>
-            <View style={[styles.fifthContainer, { backgroundColor: "#34C759" }]}>
-
+          <View style={styles.thirdContainer}>
+            <Image source={Cup} />
+            <View style={styles.roundedContainer}>
+              <Image source={Bear} />
             </View>
+            <Text style={styles.tenthText}>Anonymous</Text>
+            <Text style={[styles.tenthText, { fontSize: 12, color: "#FFC90C" }]}>2000 points</Text>
           </View>
-          <View style={{
-              position: 'absolute',
-              top: 45,
-              left: 240,
-              flexDirection: "row",
-              gap: 8,
-              justifyContent: 'center',
-              alignItems: 'center',
-              zIndex: 3
-            }}>
-             
-              <View style={{ backgroundColor: "#F33F5E", height: 35, width: 80, flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 1, borderRadius: 14 }}>
-                <Text style={[styles.sixthText, { fontSize: 10 }]}>Create post</Text>
-                <Entypo name="plus" size={15} color="#FFFFFF" />
-              </View>
+          <View style={styles.thirdContainer}>
+            <Text style={styles.tenthText}>2</Text>
+            <View style={styles.roundedContainer}>
+              <Image source={Bear} />
             </View>
+            <Text style={styles.tenthText}>Anonymous</Text>
+            <Text style={[styles.tenthText, { fontSize: 12, color: "#CDA865" }]}>2000 points</Text>
+          </View>
         </View>
+        <View style={styles.secondContainer}>
+          <View style={{ flexDirection: "row", paddingVertical: 10, borderBottomWidth: 1, borderColor: "#777777", justifyContent: "space-between", alignItems: "center" }}>
+            <Text style={styles.eighthText}>My post</Text>
+            <MaterialIcons name="arrow-forward-ios" size={15} color="#FFFFFF" />
+          </View>
+          <View style={{ flexDirection: "row", paddingVertical: 10, justifyContent: "space-between", alignItems: "center" }}>
+            <Text style={styles.eighthText}>Bookmark</Text>
+            <MaterialIcons name="arrow-forward-ios" size={15} color="#FFFFFF" />
+          </View>
+        </View>
+        <View style={{ marginTop: 10, justifyContent: "center", alignItems: "center", }}>
+          <Text style={styles.ninthText}>Leaderboard</Text>
+
+        </View>
+
       </ScrollView>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  fifthContainer: {
-    height: 10,
-
-    borderRadius: 14,
-    backgroundColor: "#F33F5E",
-    width: "50%"
-  },
-  fourthContainer: {
-    height: 10,
-    marginHorizontal: 20,
-    borderRadius: 16,
-    backgroundColor: "#1E1E1E"
-  },
   navigation: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -246,97 +115,94 @@ const styles = StyleSheet.create({
     paddingBottom: 15
   },
   firstText: {
-    color: '#F33F5E',
+    color: '#FFFFFF',
     fontWeight: "600",
-    fontSize: 16,
+    fontSize: 20,
   },
   secondText: {
-    color: '#FFFFFF',
-    fontWeight: "600",
-    fontSize: 14,
-  },
-  thirdText: {
-    color: '#FFFFFF',
-    fontWeight: "700",
-    fontSize: 10,
-    opacity: 0.5
-  },
-  fourthText: {
-    color: '#FFFFFF',
-    fontWeight: "300",
-    fontSize: 14,
-    opacity: 0.6,
-    paddingHorizontal: 20
-  },
-  fifthText: {
-    color: '#FFFFFF',
-    fontWeight: "700",
-    fontSize: 12,
-
-  },
-  sixthText: {
-    color: '#FFFFFF',
-    fontWeight: "500",
-    fontSize: 16,
-  },
-  seventhText: {
-    color: '#FFFFFF',
-    fontWeight: "500",
-    fontSize: 11,
-
-  },
-  eighthText: {
-    color: '#F33F5E',
-    fontWeight: "700",
-    fontSize: 14,
-  },
-
-  ninthText: {
-    color: '#FFFFFF',
-    fontWeight: "600",
-    fontSize: 14,
-  },
-  tenthText: {
     color: '#777777',
     fontWeight: "500",
-    fontSize: 12,
-  },
-  innerNavigation: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '50%',
+    fontSize: 14,
 
   },
-  firstContainer: {
-
-    paddingHorizontal: 10,
-    marginHorizontal: 10,
-
-    marginTop: 10,
-    paddingVertical: 5
+  thirdText: {
+    fontWeight: "700",
+    fontSize: 14,
+    color: "#FFFFFF"
   },
-  simpleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-
+  fourthText: {
+    fontWeight: "700",
+    fontSize: 11,
+    color: "#777777"
+  },
+  fifthText: {
+    fontWeight: "500",
+    fontSize: 11,
+    color: "#777777"
+  },
+  sixthText: {
+    fontWeight: "500",
+    fontSize: 14,
+    color: "#FFFFFF"
+  },
+  seventhText: {
+    fontWeight: "500",
+    fontSize: 8,
+    color: "#777777"
+  },
+  eighthText: {
+    fontWeight: "600",
+    fontSize: 16,
+    color: "#FFFFFF"
+  },
+  ninthText: {
+    fontWeight: "600",
+    fontSize: 16,
+    color: "#B20000"
+  },
+  tenthText: {
+    fontWeight: "500",
+    fontSize: 11,
+    color: "#FFFFFF"
   },
   secondContainer: {
-    borderBottomWidth: 4,
-    borderTopWidth: 4,
-    borderColor: '#1E1E1E',
-    paddingHorizontal: 20
+
+    paddingHorizontal: 10,
+    backgroundColor: "#1E1E1E",
+    paddingVertical: 10,
+    marginTop: 20,
+    borderRadius: 15
 
   },
   thirdContainer: {
-    height: 150,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginVertical: 10,
-    backgroundColor: '#FFFFFF',
+    width: "30%",
+    justifyContent: "center",
+    alignItems: "center",
+    gap:4,
     paddingHorizontal: 10,
-    paddingTop: 10
+    backgroundColor: "#1E1E1E",
+    paddingVertical: 15,
+
+    borderRadius: 12
   },
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    paddingHorizontal: 10,
+    backgroundColor: "#1E1E1E",
+    paddingVertical: 15,
+    marginTop: 20,
+    paddingBottom: 30,
+    borderRadius: 15
+
+
+  },
+  roundedContainer: {
+    height: 36,
+    width: 36,
+    borderRadius: 25
+  },
+
 })
 export default Profile
