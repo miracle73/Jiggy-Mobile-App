@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Image, ImageBackground, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { MaterialIcons } from '@expo/vector-icons'
@@ -8,9 +8,17 @@ import Hot from '../assets/image/Hot.png'
 import Cup from '../assets/image/cup.png'
 
 import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
+type RootStackParamList = {
+  Reward: undefined;
+
+};
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Reward'>;
 
 const Profile = () => {
+  const navigation = useNavigation<NavigationProp>();
   return (
     <SafeAreaView style={{
       flex: 1,
@@ -27,7 +35,7 @@ const Profile = () => {
             <Text style={[styles.secondText, { color: "#FFFFFF" }]}>1000 Jigs</Text>
           </View>
         </View>
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Reward")}>
           <View style={{ flexDirection: "row", gap: 6, justifyContent: "flex-end", alignItems: "center" }}>
             <Image source={ProfileIcon} />
             <View>
@@ -43,7 +51,7 @@ const Profile = () => {
             </View>
             <Text style={styles.seventhText}>Aura point</Text>
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={styles.secondContainer}>
           <View style={{ flexDirection: "row", paddingVertical: 10, borderBottomWidth: 1, borderColor: "#777777", justifyContent: "space-between", alignItems: "center" }}>
             <Text style={styles.eighthText}>My post</Text>
@@ -182,7 +190,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: "#1E1E1E",
     paddingVertical: 15,
-
     borderRadius: 12
   },
   container: {

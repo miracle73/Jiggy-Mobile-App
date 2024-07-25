@@ -8,6 +8,10 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Jiggy from '../assets/image/jiggy.png'
 import RNPickerSelect from 'react-native-picker-select';
+import { useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '../Store';
+import { useDispatch } from 'react-redux';
+import { useGetSchoolsMutation } from '../Api';
 
 type RootStackParamList = {
     Question2: undefined;
@@ -18,13 +22,27 @@ type NavigationProp = StackNavigationProp<RootStackParamList, 'Question2'>;
 const Question1 = () => {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const navigation = useNavigation<NavigationProp>();
-
+    const [getSchools] = useGetSchoolsMutation();
 
     const handleSubmit = () => {
         console.log(selectedValue)
         navigation.replace('Question2')
         setSelectedValue(null)
     }
+    useEffect(() => {
+        const fetchMinedAmount = async () => {
+       
+            try {
+                // setMineSuccess(false)
+                await getSchools({}).unwrap();
+        
+            } catch (error) {
+                console.error('Failed to fetch schools:', error);
+            }
+        };
+
+        fetchMinedAmount();
+    }, [getSchools]);
     return (
         <SafeAreaView style={{
             flex: 1,
