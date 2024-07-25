@@ -25,7 +25,7 @@ const ThirdSplashScreen = () => {
     useEffect(() => {
 
         const timer = setTimeout(() => {
-            navigation.navigate('Login');
+            navigation.replace('Login');
         }, 5000);
 
         return () => clearTimeout(timer);

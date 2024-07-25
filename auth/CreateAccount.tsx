@@ -21,7 +21,7 @@ const CreateAccount = () => {
     const navigation = useNavigation<NavigationProp>();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [institution, setInstitution] = useState('');
+    // const [institution, setInstitution] = useState('');
     const [cpassword, setCPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [secondPasswordVisible, setSecondPasswordVisible] = useState(false);
@@ -73,8 +73,8 @@ const CreateAccount = () => {
         setEmail('');
         setPassword('');
         setCPassword('');
-        setInstitution('');
-        console.log(email, password, institution, cpassword)
+        // setInstitution('');
+        console.log(email, password, cpassword)
         navigation.replace('Verification')
     }
     return (
@@ -169,7 +169,7 @@ const CreateAccount = () => {
                         </TouchableOpacity>
 
                     </View>
-                    <Text style={[styles.fourthText, { marginTop: 20 }]}> Institution </Text>
+                    {/* <Text style={[styles.fourthText, { marginTop: 20 }]}> Institution </Text>
                     <View style={styles.container}>
 
                         <TextInput
@@ -183,7 +183,7 @@ const CreateAccount = () => {
 
                         />
                         <MaterialIcons name="keyboard-arrow-down" size={15} color="#29292E" />
-                    </View>
+                    </View> */}
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 30 }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', gap: 2 }}>
                             <TouchableOpacity onPress={handleCheckBoxToggle} >
