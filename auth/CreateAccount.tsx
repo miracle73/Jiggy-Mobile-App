@@ -9,6 +9,10 @@ import VisiblePassword from '../assets/image/visiblePassword.png'
 import HidePassword from '../assets/image/hidepassword.png'
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useCreateUserMutation, useGetSchoolsMutation } from '../Api';
+import RNPickerSelect from 'react-native-picker-select';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../Store';
 
 type RootStackParamList = {
     Login: undefined;
@@ -21,24 +25,22 @@ const CreateAccount = () => {
     const navigation = useNavigation<NavigationProp>();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [institution, setInstitution] = useState('');
+    const [selectedValue, setSelectedValue] = useState<string | null>(null);
+    const [institution, setInstitution] = useState<string | null>(null);
     const [cpassword, setCPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [secondPasswordVisible, setSecondPasswordVisible] = useState(false);
     const [loading, setLoading] = useState(false)
     const [isChecked, setIsChecked] = useState(false);
-
+    const [createUser] = useCreateUserMutation()
+    const [getSchools] = useGetSchoolsMutation();
+    const { schools } = useSelector((state: RootState) => state.user);
 
     const handleCheckBoxToggle = () => {
         setIsChecked(!isChecked);
     };
 
-    const handleLogin = () => {
-        console.log(email, password);
-        setEmail('')
-        setPassword('')
-
-    };
+ 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
@@ -49,7 +51,24 @@ const CreateAccount = () => {
         return password === confirmPassword;
     };
 
-    const handleSubmit = () => {
+    useEffect(() => {
+        const fetchSchools = async () => {
+            try {
+                await getSchools({}).unwrap();
+            } catch (error) {
+                console.error('Failed to fetch schools:', error);
+            }
+        };
+
+        fetchSchools();
+    }, [getSchools]);
+ 
+    const schoolItems = schools.map(school => ({
+        label: school.short_name,
+        value: school.id
+    }));
+
+    const handleSubmit = async () => {
         setLoading(true)
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
@@ -70,12 +89,27 @@ const CreateAccount = () => {
             setLoading(false);
             return;
         }
+        const userData = {
+            email: email,
+            password: password,
+            institution: institution
+        };
+        console.log(email, password, cpassword, institution, "inside")
+        try {
+            await createUser(userData).unwrap();
+
+            navigation.navigate('Verification')
+        } catch (error) {
+            alert(error?.data?.email);
+            console.log(error)
+        }
         setEmail('');
         setPassword('');
         setCPassword('');
-        // setInstitution('');
-        console.log(email, password, cpassword)
-        navigation.replace('Verification')
+        setInstitution(null);
+
+        setLoading(false)
+
     }
     return (
         <SafeAreaView style={{
@@ -135,6 +169,8 @@ const CreateAccount = () => {
 
                         />
 
+
+
                         <TouchableOpacity onPress={togglePasswordVisibility}>
                             <Image
                                 source={passwordVisible ? VisiblePassword : HidePassword}
@@ -169,6 +205,27 @@ const CreateAccount = () => {
                         </TouchableOpacity>
 
                     </View>
+                    <View style={{ marginTop: 20 }}>
+                        <RNPickerSelect
+                            onValueChange={(value) => setInstitution(value)}
+                            items={schoolItems}
+                            placeholder={{ label: "Select your institution", value: null }}
+                            useNativeAndroidPickerStyle={false}
+                            style={pickerSelectStyles}
+                            value={institution}   
+                            Icon={() => {
+                                return (
+                                    <MaterialIcons
+                                        name="arrow-drop-down"
+                                        size={24}
+                                        color="#FFFFFF"
+                                        style={{ alignSelf: 'center' }} // Center the icon  
+                                    />
+                                );
+                            }}
+                        />
+                    </View>
+
                     {/* <Text style={[styles.fourthText, { marginTop: 20 }]}> Institution </Text>
                     <View style={styles.container}>
 
@@ -306,5 +363,37 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
 })
+
+const pickerSelectStyles = StyleSheet.create({  
+    inputIOS: {  
+        fontSize: 16,  
+        paddingVertical: 12,  
+        paddingHorizontal: 10,  
+        borderWidth: 1,  
+        borderColor: '#1E1E1E',  
+        borderRadius: 20,  
+        color: '#FFFFFF',  
+        paddingRight: 30, // to ensure the text is not overlapping with the icon  
+        alignSelf: 'stretch' // Ensure full width  
+    },  
+    inputAndroid: {  
+        fontSize: 16,  
+        paddingHorizontal: 10,  
+        paddingVertical: 8,  
+        borderWidth: 0.5,  
+        borderColor: '#1E1E1E',  
+        borderRadius: 20,  
+        color: '#FFFFFF',  
+        paddingRight: 30, // to ensure the text is not overlapping with the icon  
+        alignSelf: 'stretch' // Ensure full width  
+    },  
+    iconContainer: {  
+        top: '50%', // Center vertically  
+        right: 10, // Add some spacing to the right to avoid overlap on Android  
+        transform: [{ translateY: -12 }], // Adjust vertical alignment  
+        justifyContent: 'center',  
+        alignItems: 'center'  
+    },  
+});  
 
 export default CreateAccount

@@ -1,7 +1,6 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { createUser, mineCXA, loginUser, amountMined, forgotPassword } from "./UserAction";
 import { Api } from "./Api";
 import storage from '@react-native-async-storage/async-storage'
 
@@ -20,8 +19,16 @@ export interface userState {
     isSignedIn: boolean,
     userId: string,
     totalSchools: number,
-    token: string,
-    schools: School[];
+    accessToken: string,
+    refreshToken: string,
+    schools: School[],
+    first_name: string,
+    last_name: string,
+    country: string,
+    pred_name: string,
+    about: string,
+    gender: string,
+    grad_year: number,
 
 
 }
@@ -33,8 +40,16 @@ const initialState: userState = {
     isSignedIn: false,
     userId: '',
     totalSchools: 0,
-    token: '',
-    schools: []
+    accessToken: '',
+    refreshToken: '',
+    schools: [],
+    first_name: '',
+    last_name: '',
+    country: '',
+    pred_name: '',
+    about: '',
+    gender: '',
+    grad_year: 0,
 
 
 }
@@ -50,7 +65,8 @@ export const userSlice = createSlice({
     reducers: {
 
         logout: (state) => {
-            state.token = '';
+            state.accessToken = '';
+            state.refreshToken = '';
             state.username = '';
             state.email = '';
             state.userId = '';
@@ -60,29 +76,37 @@ export const userSlice = createSlice({
     },
     extraReducers: builder => {
 
-        builder.addMatcher(Api.endpoints.forgotPassword.matchFulfilled, (state, action) => {
-            console.log(action, 'fulfilled')
+        builder.addMatcher(Api.endpoints.updateUserDetails.matchFulfilled, (state, action) => {
+            state.about = action.payload.about,
+            state.country = action.payload.country,
+            state.gender = action.payload.gender,
+            state.grad_year = action.payload.grad_year,
+            state.pred_name = action.payload.pred_name
+            console.log(action.payload)
+
         })
         builder.addMatcher(Api.endpoints.resetPassword.matchFulfilled, (state, action) => {
             console.log(action, 'Reset')
         })
             .addMatcher(Api.endpoints.createUser.matchFulfilled, (state, action) => {
                 console.log(action.payload)
-                state.email = action.payload.data.email;
-                state.userId = action.payload.data.user;
-                state.username = action.meta.arg.username;
+
             })
 
             .addMatcher(Api.endpoints.loginUser.matchFulfilled, (state, action) => {
-                // state.password = action.meta.arg.password;
-                state.token = action.payload.data.token;
-                state.username = action.payload.data.username;
-                state.email = action.payload.data.email;
-                state.userId = action.payload.data.userId
-                state.isSignedIn = true;
+
+                state.accessToken = action.payload.access_token,
+                    state.refreshToken = action.payload.refresh_token
+                console.log(state.accessToken)
+                console.log(state.refreshToken)
             })
-            .addMatcher(Api.endpoints.mineCXA.matchFulfilled, (state, action) => {
-                console.log(state.totalSchools, 'mine 00')
+            .addMatcher(Api.endpoints.getUserDetail.matchFulfilled, (state, action) => {
+                state.email = action.payload.email,
+                    state.userId = action.payload.id,
+                    state.first_name = action.payload.first_name,
+                    state.last_name = action.payload.last_name,
+                    state.country = action.payload.country,
+                    state.pred_name = action.payload.pred_name
 
             })
             .addMatcher(Api.endpoints.getSchools.matchFulfilled, (state, action) => {

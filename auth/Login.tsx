@@ -9,6 +9,9 @@ import VisiblePassword from '../assets/image/visiblePassword.png'
 import HidePassword from '../assets/image/hidepassword.png'
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useLoginUserMutation } from '../Api';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../Store';
 
 type RootStackParamList = {
     CreateAccount: undefined;
@@ -26,6 +29,7 @@ const Login = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [loading, setLoading] = useState(false)
     const [isChecked, setIsChecked] = useState(false);
+    const [loginUser] = useLoginUserMutation()
 
 
     const handleCheckBoxToggle = () => {
@@ -36,7 +40,8 @@ const Login = () => {
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+        setLoading(true)
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
             alert('Please enter a valid email address');
@@ -47,10 +52,27 @@ const Login = () => {
             alert('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character');
             return;
         }
+
+        console.log(email, password)
+        const userData = {
+            grant_type: "password",
+            client_id: "Ji2t21lMTg4UjMHSURMUgitwyVu8lJkMrjcZOMkd",
+            client_secret: "iS9a6VtdrQ4YR1kRZhHhtzWtheu1yP22cgy6Sp9X7eyj0h6nwjT0i7wvQK6VkerU5in7PKH5hXgWAqBWsfktky9DWVOJBxpO0UnmwzeUAkpSZhvv9Su77lE5kvMtC95C",
+            username: email,
+            password: password,
+
+        };
+
+        try {
+            await loginUser(userData).unwrap();
+            secondNavigation.replace('BottomNavigation');
+        } catch (error) {
+            alert(error?.data?.email);
+            console.log(error)
+        }
         setEmail('');
         setPassword('');
-        console.log(email, password)
-        secondNavigation.replace('BottomNavigation');
+        setLoading(false)
     }
     return (
         <SafeAreaView style={{

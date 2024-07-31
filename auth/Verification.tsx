@@ -8,10 +8,10 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
-    Question1: undefined;
+    Question2: undefined;
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'Question1'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Question2'>;
 
 const Verification = () => {
     const navigation = useNavigation<NavigationProp>();
@@ -40,7 +40,7 @@ const Verification = () => {
     const handleSubmit = () => {
         console.log(otpCode)
         setOtpCode(['', '', '', '']);
-        navigation.replace('Question1')
+        navigation.navigate('Question2')
     }
     return (
         <SafeAreaView style={{

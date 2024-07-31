@@ -13,7 +13,7 @@ import { Api } from "./Api";
 
 const persistConfig = {
     key: 'root',
-    storage, // Use AsyncStorage as the storage engine
+    storage, 
   
    };
    
@@ -24,7 +24,7 @@ const persistConfig = {
        user: persistedReducer,
        [Api.reducerPath]: Api.reducer,
     },
-    // middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {

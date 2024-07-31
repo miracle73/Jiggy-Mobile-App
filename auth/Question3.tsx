@@ -7,6 +7,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Jiggy from '../assets/image/jiggy.png'
+import { useUpdateUserDetailsMutation } from '../Api'
 
 
 type RootStackParamList = {
@@ -16,14 +17,30 @@ type RootStackParamList = {
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
 const Question3 = () => {
-    const [year, setYear] = useState('')
+    const [year, setYear] = useState(0)
     const navigation = useNavigation<NavigationProp>();
+    const [updateUserDetails] = useUpdateUserDetailsMutation()
 
-
-    const handleSubmit = () => {
+    const handleSubmit = async (year: number) => {
+  
+        const userData = {  
+            graduation_year: year
+        };  
         console.log(year)
-        navigation.replace('Login')
+        try {
+            await updateUserDetails(userData).unwrap();
+            console.log("correct")
+            navigation.navigate('Login')
+        } catch (error) {
+            alert("There was an error, Please try again");
+            console.log(error)
+        }
+    
+        setYear(0)
+    
+        
     }
+    
     return (
         <SafeAreaView style={{
             flex: 1,
@@ -55,23 +72,23 @@ const Question3 = () => {
 
                     <Text style={styles.fifthText}> What’s your graduation year? </Text>
 
-                    <TouchableOpacity style={styles.container} onPress={() => {setYear('2028'); handleSubmit()}}>
+                    <TouchableOpacity style={styles.container} onPress={() => {handleSubmit(2028)}}>
                         <Text style={styles.fourthText}>2028</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => {setYear('2027'); handleSubmit()}}>
+                    <TouchableOpacity style={styles.container} onPress={() => {handleSubmit(2027)}}>
                         <Text style={styles.fourthText}>2027</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => {setYear('2026'); handleSubmit()}}>
+                    <TouchableOpacity style={styles.container} onPress={() => {handleSubmit(2026)}}>
                         <Text style={styles.fourthText}>2026</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => {setYear('2025'); handleSubmit()}}>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2025)}}>
                         <Text style={styles.fourthText}>2025</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => {setYear('2024'); handleSubmit()}}>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2024)}}>
                         <Text style={styles.fourthText}>2024</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.container} onPress={() => {setYear('I am a graduate'); handleSubmit()}}>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(0)}}>
                         <Text style={styles.fourthText}>I am a graduate</Text>
                     </TouchableOpacity>
                

@@ -9,21 +9,49 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Details from './Details'
 import Stats from './Stats'
+import { useUpdateUserDetailsMutation } from '../Api'
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../Store';
 
 type RootStackParamList = {
     Chat: undefined;
+    Profile: undefined;
+
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'Chat'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Chat', 'Profile'>;
 
 const ProfileEdit = () => {
     const [activeTab, setActiveTab] = useState('Details');
+   
+    const [country, setCountry] = useState("");
+    const [about, setAbout] = useState("");
+    const [updateUserDetails] = useUpdateUserDetailsMutation()
 
     const navigation = useNavigation<NavigationProp>();
     const handleTabPress = (tab: any) => {
         setActiveTab(tab);
     };
 
+    const handleSave = async () => {
+        const userData = {
+            about: about,
+            country: country,
+            
+        };
+        console.log(about,  country)
+        try {
+            await updateUserDetails(userData).unwrap();
+
+            navigation.navigate('Profile')
+        } catch (error) {
+            alert("There was an error, Please try again");
+            console.log(error)
+        }
+        setAbout("")
+        setCountry("")
+
+    };
     return (
         <SafeAreaView style={{
             flex: 1,
@@ -34,12 +62,14 @@ const ProfileEdit = () => {
             <StatusBar style="light" />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{ paddingHorizontal: 20, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                    <TouchableOpacity  onPress={() => navigation.goBack()} style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", height: 32, width: 32, borderRadius: 30, backgroundColor: "#1E1E1E" }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", height: 32, width: 32, borderRadius: 30, backgroundColor: "#1E1E1E" }}>
                         <MaterialIcons name="arrow-back-ios-new" size={15} color="#FFFFFF" />
                     </TouchableOpacity>
                     <Text style={styles.firstText}>Edit profile</Text>
+                    <TouchableOpacity onPress={handleSave}>
+                        <Text style={styles.secondText}>Save</Text>
+                    </TouchableOpacity>
 
-                    <Text style={styles.secondText}>Save</Text>
                 </View>
                 <View style={styles.container}>
                     <Entypo name="plus" size={15} color="#FFFFFF" />
@@ -62,9 +92,17 @@ const ProfileEdit = () => {
                     ))}
                 </View>
                 <View style={{ paddingTop: 10, }}>
-                    {activeTab === 'Details' && <Details />}
+                    {activeTab === 'Details' &&
+                        <Details
+                            about={about}
+                            setAbout={setAbout}
+                           
+                          
+                            country={country}
+                            setCountry={setCountry} />
+                    }
                     {activeTab === 'Stats' && <Stats />}
-                   
+
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -84,7 +122,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 
- 
+
 
     container: {
         flexDirection: "row",

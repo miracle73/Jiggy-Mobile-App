@@ -1,24 +1,40 @@
 import { View, Text, SafeAreaView, StyleSheet, Image, ImageBackground, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {useEffect} from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { MaterialIcons } from '@expo/vector-icons'
 import ProfileIcon from '../assets/image/ProfileIcon.png'
 import Bear from '../assets/image/Bear.png'
 import Hot from '../assets/image/Hot.png'
 import Cup from '../assets/image/cup.png'
-
+import { useGetUserDetailMutation} from '../Api';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../Store';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
-  Reward: undefined;
+  ProfileEdit: undefined;
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'Reward'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'ProfileEdit'>;
 
 const Profile = () => {
+  const { email, userId } = useSelector((state: RootState) => state.user);
   const navigation = useNavigation<NavigationProp>();
+  const [getUserDetail] = useGetUserDetailMutation()
+
+  useEffect(() => {
+    const fetchSchools = async () => {
+        try {
+            await getUserDetail({}).unwrap();
+        } catch (error) {
+            console.error('Failed to fetch user details:', error);
+        }
+    };
+
+    fetchSchools();
+}, [getUserDetail]);
   return (
     <SafeAreaView style={{
       flex: 1,
@@ -35,13 +51,13 @@ const Profile = () => {
             <Text style={[styles.secondText, { color: "#FFFFFF" }]}>1000 Jigs</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Reward")}>
+        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("ProfileEdit")}>
           <View style={{ flexDirection: "row", gap: 6, justifyContent: "flex-end", alignItems: "center" }}>
             <Image source={ProfileIcon} />
             <View>
               <Text style={styles.thirdText}>Anonymous</Text>
-              <Text style={styles.fourthText}>Darrere@gmail.com</Text>
-              <Text style={styles.fifthText}>ID:20399384</Text>
+              <Text style={styles.fourthText}>{email}</Text>
+              <Text style={styles.fifthText}>ID:{userId}</Text>
             </View>
           </View>
           <View style={{ justifyContent: "center", alignItems: "center" }}>

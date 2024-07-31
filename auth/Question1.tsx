@@ -41,7 +41,6 @@ const Question1 = () => {
         fetchSchools();
     }, [getSchools]);
 
-    // Map schools to picker items
     const schoolItems = schools.map(school => ({
         label: school.short_name,
         value: school.short_name
@@ -137,7 +136,7 @@ const pickerSelectStyles = StyleSheet.create({
         borderColor: 'gray',
         borderRadius: 4,
         color: '#FFFFFF',
-        paddingRight: 30, // to ensure the text is never behind the icon
+        paddingRight: 30, 
         backgroundColor: '#FFF1E1'
     },
     inputAndroid: {
@@ -148,7 +147,7 @@ const pickerSelectStyles = StyleSheet.create({
         borderColor: 'purple',
         borderRadius: 28,
         color: 'black',
-        paddingRight: 30, // to ensure the text is never behind the icon
+        paddingRight: 30, 
         backgroundColor: '#FFF1E1'
     },
 });
