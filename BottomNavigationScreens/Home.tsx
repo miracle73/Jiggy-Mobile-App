@@ -16,11 +16,13 @@ import PostImage from '../assets/image/postImage.png'
 import BoostModal from '../components/modal/BoostModal'
 import BoostModal2 from '../components/modal/BoostModal2'
 import ConversationModal from '../components/modal/ConversationModal'
+import TrendingModal from '../components/modal/Trending'
 
 const Home = () => {
   const [modal, setModal] = useState(false)
   const [secondModal, setSecondModal] = useState(false)
   const [thirdModal, setThirdModal] = useState(false)
+  const [fourthModal, setFourthModal] = useState(false)
   return (
     <SafeAreaView style={{
       flex: 1,
@@ -37,7 +39,9 @@ const Home = () => {
             <Text style={[styles.secondText, { marginLeft: 8 }]}>IMSU</Text>
             <Text style={styles.secondText}>Discover</Text>
           </View>
-          <AntDesign name="search1" size={25} style={{ color: '#FFFFFF', opacity: 0.4 }} />
+          <TouchableOpacity onPress={() => setFourthModal(true)}>
+            <AntDesign name="search1" size={25} style={{ color: '#FFFFFF', opacity: 0.4 }} />
+          </TouchableOpacity>
         </View>
 
 
@@ -308,7 +312,7 @@ const Home = () => {
           }}>
             <View style={[styles.innerNavigation, { justifyContent: 'flex-start', gap: 4 }]}>
 
-              <TouchableOpacity  style={{ height: 26, width: 26, borderRadius: 13 }} onPress={() => setThirdModal(true)}>
+              <TouchableOpacity style={{ height: 26, width: 26, borderRadius: 13 }} onPress={() => setThirdModal(true)}>
                 <Image source={Picture} />
               </TouchableOpacity>
               <View>
@@ -359,7 +363,7 @@ const Home = () => {
           }}>
             <View style={[styles.innerNavigation, { justifyContent: 'flex-start', gap: 4 }]}>
 
-              <TouchableOpacity style={{ height: 26, width: 26, borderRadius: 13 }}  onPress={() => setThirdModal(true)}>
+              <TouchableOpacity style={{ height: 26, width: 26, borderRadius: 13 }} onPress={() => setThirdModal(true)}>
                 <Image source={Picture} />
               </TouchableOpacity>
               <View>
@@ -388,6 +392,8 @@ const Home = () => {
       {modal && <BoostModal modal={modal} setModal={setModal} />}
       {secondModal && <BoostModal2 modal={secondModal} setModal={setSecondModal} />}
       {thirdModal && <ConversationModal modal={thirdModal} setModal={setThirdModal} />}
+      {fourthModal && <TrendingModal modal={fourthModal} setModal={setFourthModal} />}
+
     </SafeAreaView>
   )
 }
