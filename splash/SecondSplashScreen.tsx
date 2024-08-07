@@ -22,17 +22,17 @@ const SecondSplashScreen = () => {
     const { isSignedIn, email } = useSelector((state: RootState) => state.user)
     console.log(isSignedIn)
     useEffect(() => {
-        if (isSignedIn) {
+        // if (isSignedIn) {
 
-            navigation.replace('BottomNavigation');
-        } else {
+        //     navigation.replace('BottomNavigation');
+        // } else {
             const timer = setTimeout(() => {
                 navigation.replace('ThirdSplashScreen');
             }, 5000);
 
             return () => clearTimeout(timer);
-        }
-    }, [isSignedIn, navigation]);
+        
+    }, [ navigation]);
     return (
         <SafeAreaView style={{
             flex: 1,

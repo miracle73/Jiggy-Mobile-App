@@ -6,16 +6,16 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
-    SecondSplashScreen: undefined;
+    ThirdSplashScreen: undefined;
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'SecondSplashScreen'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'ThirdSplashScreen'>;
 const FirstSplashScreen = () => {
     const navigation = useNavigation<NavigationProp>();
     useEffect(() => {
 
         const timer = setTimeout(() => {
-            navigation.replace('SecondSplashScreen');
+            navigation.replace('ThirdSplashScreen');
         }, 5000);
 
         return () => clearTimeout(timer);

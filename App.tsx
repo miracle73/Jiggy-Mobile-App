@@ -57,8 +57,8 @@ export default function App() {
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
           <Stack.Navigator >
-            {/* <Stack.Screen name="FirstSplashScreen" component={FirstSplashScreen} options={{ headerShown: false }} /> */}
-            <Stack.Screen name="SecondSplashScreen" component={SecondSplashScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="FirstSplashScreen" component={FirstSplashScreen} options={{ headerShown: false }} />
+            {/* <Stack.Screen name="SecondSplashScreen" component={SecondSplashScreen} options={{ headerShown: false }} /> */}
             <Stack.Screen name="ThirdSplashScreen" component={ThirdSplashScreen} options={{ headerShown: false }} />
             <Stack.Screen name="CreateAccount" component={CreateAccount} options={{ headerShown: false }} />
             <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
