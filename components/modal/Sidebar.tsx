@@ -1,9 +1,24 @@
 import { View, Text, Dimensions, Modal, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import RoundedImage from '../../assets/image/roundedImage.png'
+import Logo from '../../assets/image/secondJiggy.png'
 import Icon from '../../assets/image/Best3.png'
 import Camera from '../../assets/image/camera.png'
 import FiveStar from '../../assets/image/Five-star.png'
+import { MaterialIcons } from '@expo/vector-icons'
+import { RootState, AppDispatch } from '../../Store';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../UseReducer'
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+
+
+type RootStackParamList = {
+    Login: undefined;
+
+};
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+
 
 const { width, height } = Dimensions.get('window')
 interface ConversationModalProps {
@@ -11,10 +26,11 @@ interface ConversationModalProps {
     modal: boolean;
 }
 const SideBarModal = ({ setModal, modal }: ConversationModalProps) => {
-
+    const dispatch = useDispatch()
+    const navigation = useNavigation<NavigationProp>();
     return (
         <Modal
-            animationType="slide"
+         
             transparent={true}
             style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}
             visible={modal}
@@ -24,8 +40,32 @@ const SideBarModal = ({ setModal, modal }: ConversationModalProps) => {
         >
             <View style={styles.modalContainer}>
                 <View style={styles.modalContent}>
-
-                
+                    <Image source={Logo} style={{marginTop: 40}} />
+                    <Text style={styles.secondText}>Feature</Text>
+                    <TouchableOpacity style={{ flexDirection: 'row', paddingVertical: 10, paddingTop: 30, justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={styles.firstText}>Agl</Text>
+                        <MaterialIcons name="keyboard-arrow-right" size={20} style={{ color: '#777777' }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flexDirection: 'row', paddingVertical: 10, justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={styles.firstText}>Campus news</Text>
+                        <MaterialIcons name="keyboard-arrow-right" size={20} style={{ color: '#777777' }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flexDirection: 'row', paddingVertical: 10, justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={styles.firstText}>Ads center</Text>
+                        <MaterialIcons name="keyboard-arrow-right" size={20} style={{ color: '#777777' }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flexDirection: 'row', paddingVertical: 10, justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={styles.firstText}>Story map</Text>
+                        <MaterialIcons name="keyboard-arrow-right" size={20} style={{ color: '#777777' }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flexDirection: 'row', paddingVertical: 10, justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={styles.firstText}>Find</Text>
+                        <MaterialIcons name="keyboard-arrow-right" size={20} style={{ color: '#777777' }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flexDirection: 'row', paddingVertical: 10, justifyContent: 'space-between', alignItems: 'center' }} onPress={() => {dispatch(logout()); navigation.navigate("Login")}}>
+                        <Text style={styles.firstText}>Logout</Text>
+                        <MaterialIcons name="keyboard-arrow-right" size={20} style={{ color: '#777777' }} />
+                    </TouchableOpacity>
                 </View>
             </View>
         </Modal>
@@ -75,48 +115,31 @@ const styles = StyleSheet.create({
     },
 
     modalContent: {
-        width: '100%',
+        width: '50%',
+        height: height * 1,
         position: 'absolute',
         bottom: 0,
         backgroundColor: '#1E1E1E',
         elevation: 10,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        height: height * 0.40,
         paddingHorizontal: 20
     },
     firstText: {
-        fontSize: 12,
-        fontWeight: "700",
+        fontSize: 16,
+        fontWeight: "500",
         fontStyle: "normal",
         color: "#FFFFFF",
     },
     secondText: {
-        fontSize: 10,
-        fontWeight: "700",
-        fontStyle: "normal",
-        color: "#777777",
-
-    },
-    thirdText: {
-        fontSize: 16,
+        fontSize: 30,
         fontWeight: "600",
         fontStyle: "normal",
-        color: "#FFFFFF",
-    },
-    fourthText: {
-        fontSize: 12,
-        fontWeight: "500",
-        fontStyle: "normal",
         color: "#777777",
+        marginTop: 10
+
     },
-    fifthText: {
-        fontSize: 12,
-        fontWeight: "500",
-        fontStyle: "normal",
-        color: "#FFFFFF",
-    },
+ 
   
+
 })
 
 export default SideBarModal

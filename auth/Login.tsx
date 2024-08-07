@@ -67,7 +67,7 @@ const Login = () => {
             await loginUser(userData).unwrap();
             secondNavigation.replace('BottomNavigation');
         } catch (error) {
-            alert(error?.data?.email);
+            alert(error?.data?.error_description);
             console.log(error)
         }
         setEmail('');

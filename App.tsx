@@ -26,6 +26,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from './Store';
 import { store } from './Store';
 import { Provider } from 'react-redux';
+import Question4 from './auth/Question4';
 
 const Stack = createNativeStackNavigator();
 
@@ -72,6 +73,7 @@ export default function App() {
             <Stack.Screen name="LeaderBoard" component={LeaderBoard} options={{ headerShown: false }} />
             <Stack.Screen name="Achievement" component={Achievement} options={{ headerShown: false }} />
             <Stack.Screen name="Reward" component={Reward} options={{ headerShown: false }} />
+            <Stack.Screen name="Question4" component={Question4} options={{ headerShown: false }} />
           </Stack.Navigator >
         </NavigationContainer>
       </PersistGate>

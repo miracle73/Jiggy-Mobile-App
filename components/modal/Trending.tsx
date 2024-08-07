@@ -1,7 +1,5 @@
 import { View, Text, Dimensions, Modal, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-
-
 const { width, height } = Dimensions.get('window')
 interface ConversationModalProps {
     setModal: (value: boolean) => void;
@@ -12,7 +10,7 @@ const TrendingModal = ({ setModal, modal }: ConversationModalProps) => {
 
     return (
         <Modal
-            animationType="slide"
+          
             transparent={true}
             style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}
             visible={modal}
@@ -24,7 +22,7 @@ const TrendingModal = ({ setModal, modal }: ConversationModalProps) => {
                 <View style={styles.modalContent}>
                     <View>
                         <Text style={styles.firstText}>Trending</Text>
-                        <View style={{ flexDirection: "row", marginTop: 5, justifyContent: "space-between", alignItems: "center", flexWrap: "wrap" }}>
+                        <View style={{ flexDirection: "row", marginTop: 10, justifyContent: "space-between", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
                             <View style={styles.container}>
                                 <Text style={styles.secondText}>Confession</Text>
                             </View>
@@ -51,7 +49,7 @@ const TrendingModal = ({ setModal, modal }: ConversationModalProps) => {
                             </View>
                         </View>
                     </View>
-                    <View style={{ flexDirection: "row", paddingHorizontal: 20, marginTop: 40, justifyContent: "space-between", alignItems: "center", }}>
+                    <View style={{ flexDirection: "row",  marginTop: 40, justifyContent: "space-between", alignItems: "center", }}>
                         <View style={[styles.container, { backgroundColor: "#1D4ED8" }]}>
                             <Text style={styles.secondText}>DM</Text>
                         </View>
@@ -71,6 +69,7 @@ const styles = StyleSheet.create({
     },
     container: {
         padding: 4,
+        paddingHorizontal: 7,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -82,9 +81,9 @@ const styles = StyleSheet.create({
     modalContent: {
         width: '100%',
         position: 'absolute',
-        top: 100,
+        top: 70,
         backgroundColor: '#131212',
-        height: height * 0.30,
+        height: height * 0.20,
         paddingHorizontal: 20
     },
     firstText: {

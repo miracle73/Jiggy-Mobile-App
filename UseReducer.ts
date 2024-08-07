@@ -78,15 +78,15 @@ export const userSlice = createSlice({
 
         builder.addMatcher(Api.endpoints.updateUserDetails.matchFulfilled, (state, action) => {
             state.about = action.payload.about,
-            state.country = action.payload.country,
-            state.gender = action.payload.gender,
-            state.grad_year = action.payload.grad_year,
-            state.pred_name = action.payload.pred_name
+                state.country = action.payload.country,
+                state.gender = action.payload.gender,
+                state.grad_year = action.payload.grad_year,
+                state.pred_name = action.payload.pred_name
             console.log(action.payload)
 
         })
-        builder.addMatcher(Api.endpoints.resetPassword.matchFulfilled, (state, action) => {
-            console.log(action, 'Reset')
+        builder.addMatcher(Api.endpoints.predefinedName.matchFulfilled, (state, action) => {
+            console.log(action.payload)
         })
             .addMatcher(Api.endpoints.createUser.matchFulfilled, (state, action) => {
                 console.log(action.payload)
@@ -99,6 +99,7 @@ export const userSlice = createSlice({
                     state.refreshToken = action.payload.refresh_token
                 console.log(state.accessToken)
                 console.log(state.refreshToken)
+                state.isSignedIn = true
             })
             .addMatcher(Api.endpoints.getUserDetail.matchFulfilled, (state, action) => {
                 state.email = action.payload.email,
@@ -118,8 +119,35 @@ export const userSlice = createSlice({
                     short_name: school.short_name
                 }));
 
-            });
+            })
+            .addMatcher(Api.endpoints.createPost.matchFulfilled, (state, action) => {
+                console.log(action.payload)
 
+            })
+            .addMatcher(Api.endpoints.getPost.matchFulfilled, (state, action) => {
+                console.log(action.payload)
+
+            })
+            .addMatcher(Api.endpoints.upvote.matchFulfilled, (state, action) => {
+                console.log(action.payload)
+
+            })
+            .addMatcher(Api.endpoints.downvote.matchFulfilled, (state, action) => {
+                console.log(action.payload)
+
+            })
+            .addMatcher(Api.endpoints.replyComment.matchFulfilled, (state, action) => {
+                console.log(action.payload)
+
+            })
+            .addMatcher(Api.endpoints.viewComment.matchFulfilled, (state, action) => {
+                console.log(action.payload)
+
+            })
+            .addMatcher(Api.endpoints.addComment.matchFulfilled, (state, action) => {
+                console.log(action.payload)
+
+            })
     }
 
 })

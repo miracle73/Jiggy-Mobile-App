@@ -40,7 +40,7 @@ const CreateAccount = () => {
         setIsChecked(!isChecked);
     };
 
- 
+
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
@@ -62,7 +62,7 @@ const CreateAccount = () => {
 
         fetchSchools();
     }, [getSchools]);
- 
+
     const schoolItems = schools.map(school => ({
         label: school.short_name,
         value: school.id
@@ -98,7 +98,7 @@ const CreateAccount = () => {
         try {
             await createUser(userData).unwrap();
 
-            navigation.navigate('Verification')
+            navigation.replace('Verification')
         } catch (error) {
             alert(error?.data?.email);
             console.log(error)
@@ -124,9 +124,9 @@ const CreateAccount = () => {
                 paddingTop: 50
             }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-                    <View style={styles.curvedContainer}>
+                    <TouchableOpacity style={styles.curvedContainer} onPress={() => navigation.goBack()}>
                         <MaterialIcons name="arrow-back-ios" size={12} color="#FFFFFF" style={{ marginLeft: 5 }} />
-                    </View>
+                    </TouchableOpacity>
                     <Text style={styles.firstText}>Sign up</Text>
                 </View>
                 <KeyboardAwareScrollView
@@ -212,7 +212,7 @@ const CreateAccount = () => {
                             placeholder={{ label: "Select your institution", value: null }}
                             useNativeAndroidPickerStyle={false}
                             style={pickerSelectStyles}
-                            value={institution}   
+                            value={institution}
                             Icon={() => {
                                 return (
                                     <MaterialIcons
@@ -364,36 +364,36 @@ const styles = StyleSheet.create({
     },
 })
 
-const pickerSelectStyles = StyleSheet.create({  
-    inputIOS: {  
-        fontSize: 16,  
-        paddingVertical: 12,  
-        paddingHorizontal: 10,  
-        borderWidth: 1,  
-        borderColor: '#1E1E1E',  
-        borderRadius: 20,  
-        color: '#FFFFFF',  
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+        fontSize: 16,
+        paddingVertical: 12,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: '#1E1E1E',
+        borderRadius: 20,
+        color: '#FFFFFF',
         paddingRight: 30, // to ensure the text is not overlapping with the icon  
         alignSelf: 'stretch' // Ensure full width  
-    },  
-    inputAndroid: {  
-        fontSize: 16,  
-        paddingHorizontal: 10,  
-        paddingVertical: 8,  
-        borderWidth: 0.5,  
-        borderColor: '#1E1E1E',  
-        borderRadius: 20,  
-        color: '#FFFFFF',  
+    },
+    inputAndroid: {
+        fontSize: 16,
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        borderWidth: 0.5,
+        borderColor: '#1E1E1E',
+        borderRadius: 20,
+        color: '#FFFFFF',
         paddingRight: 30, // to ensure the text is not overlapping with the icon  
         alignSelf: 'stretch' // Ensure full width  
-    },  
-    iconContainer: {  
+    },
+    iconContainer: {
         top: '50%', // Center vertically  
         right: 10, // Add some spacing to the right to avoid overlap on Android  
         transform: [{ translateY: -12 }], // Adjust vertical alignment  
-        justifyContent: 'center',  
-        alignItems: 'center'  
-    },  
-});  
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+});
 
 export default CreateAccount

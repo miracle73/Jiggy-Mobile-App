@@ -12,12 +12,11 @@ import { useUpdateUserDetailsMutation } from '../Api'
 
 type RootStackParamList = {
     Login: undefined;
-    Question4: undefined;
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'Login', 'Question4'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
-const Question3 = () => {
+const Question4 = () => {
     const [year, setYear] = useState(0)
     const navigation = useNavigation<NavigationProp>();
     const [updateUserDetails] = useUpdateUserDetailsMutation()
@@ -70,30 +69,37 @@ const Question3 = () => {
                     keyboardShouldPersistTaps='handled'
                     showsVerticalScrollIndicator={false}
                 >
-                    <Text style={[styles.secondText, { marginTop: 50, textAlign: 'center' }]}>About you</Text>
-                    <Text style={[styles.thirdText, { marginTop: 10, marginBottom: 20, textAlign: 'center' }]}> Tell us about yourself to improve ads & connect you to other users (Your information will not be used for any other thing) </Text>
+                    
 
+                    <Text style={styles.fifthText}> What year did you graduate ? </Text>
 
-                    <Text style={styles.fifthText}> What’s your graduation year? </Text>
-
-                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2028) }}>
-                        <Text style={styles.fourthText}>2028</Text>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2023) }}>
+                        <Text style={styles.fourthText}>2023</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2027) }}>
-                        <Text style={styles.fourthText}>2027</Text>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2022) }}>
+                        <Text style={styles.fourthText}>2022</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2026) }}>
-                        <Text style={styles.fourthText}>2026</Text>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2021) }}>
+                        <Text style={styles.fourthText}>2021</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2025) }}>
-                        <Text style={styles.fourthText}>2025</Text>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2020) }}>
+                        <Text style={styles.fourthText}>2020</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2024) }}>
-                        <Text style={styles.fourthText}>2024</Text>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2019) }}>
+                        <Text style={styles.fourthText}>2019</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.container} onPress={() => { navigation.navigate('Question4') }}>
-                        <Text style={styles.fourthText}>I am a graduate</Text>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2018) }}>
+                        <Text style={styles.fourthText}>2018</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2017) }}>
+                        <Text style={styles.fourthText}>2017</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2016) }}>
+                        <Text style={styles.fourthText}>2016</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.container} onPress={() => { handleSubmit(2015) }}>
+                        <Text style={styles.fourthText}>2015</Text>
                     </TouchableOpacity>
 
                 </KeyboardAwareScrollView>
@@ -186,4 +192,4 @@ const pickerSelectStyles = StyleSheet.create({
 });
 
 
-export default Question3
+export default Question4

@@ -7,40 +7,48 @@ import { LinearGradient } from 'expo-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useSelector } from 'react-redux';
+import { RootState } from '../Store';
 
 type RootStackParamList = {
     ThirdSplashScreen: undefined;
+    BottomNavigation: undefined;
 
 };
-type NavigationProp = StackNavigationProp<RootStackParamList, 'ThirdSplashScreen'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'ThirdSplashScreen', 'BottomNavigation'>;
 
 const SecondSplashScreen = () => {
     const navigation = useNavigation<NavigationProp>();
+    const { isSignedIn, email } = useSelector((state: RootState) => state.user)
+    console.log(isSignedIn)
     useEffect(() => {
+        if (isSignedIn) {
 
-        const timer = setTimeout(() => {
-            navigation.replace('ThirdSplashScreen');
-        }, 5000);
+            navigation.replace('BottomNavigation');
+        } else {
+            const timer = setTimeout(() => {
+                navigation.replace('ThirdSplashScreen');
+            }, 5000);
 
-        return () => clearTimeout(timer);
+            return () => clearTimeout(timer);
+        }
+    }, [isSignedIn, navigation]);
+    return (
+        <SafeAreaView style={{
+            flex: 1,
+            backgroundColor: '#181A1C',
+            justifyContent: 'center',
+            alignItems: 'center',
 
-    }, [navigation]);
-  return (
-    <SafeAreaView style={{
-        flex: 1,
-        backgroundColor: '#181A1C',
-        justifyContent: 'center',
-        alignItems: 'center',
+        }}>
+            <StatusBar style="light" />
+            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                <Image source={Union} />
+                <Image source={CustomText} style={{ marginTop: 15, marginLeft: 10 }} />
 
-    }}>
-        <StatusBar style="light" />
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <Image source={Union} />
-            <Image source={CustomText} style={{marginTop: 15, marginLeft: 10}} />
-
-        </View>
-    </SafeAreaView>
-  )
+            </View>
+        </SafeAreaView>
+    )
 }
 
 export default SecondSplashScreen

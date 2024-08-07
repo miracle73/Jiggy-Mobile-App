@@ -40,7 +40,7 @@ const Verification = () => {
     const handleSubmit = () => {
         console.log(otpCode)
         setOtpCode(['', '', '', '']);
-        navigation.navigate('Question2')
+        navigation.replace('Question2')
     }
     return (
         <SafeAreaView style={{
