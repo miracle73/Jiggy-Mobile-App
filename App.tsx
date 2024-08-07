@@ -27,7 +27,9 @@ import { persistor } from './Store';
 import { store } from './Store';
 import { Provider } from 'react-redux';
 import Question4 from './auth/Question4';
+import * as SystemUI from "expo-system-ui";
 
+SystemUI.setBackgroundColorAsync("transparent");
 const Stack = createNativeStackNavigator();
 
 export default function App() {
